@@ -1,29 +1,73 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+
+  <div class="super_container">
+
+    <!-- Header -->
+    <blog-header :links="links" />
+
+    <!-- Home -->
+
+    <blog-home :articles="homeArticles" />
+
+    <!-- Page Content -->
+    <blog-content :categories="categories"  :newestArticles="newestArticles" :popularArticles="popularArticles" />
+
+    <!-- footer -->
+    <blog-footer />
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import BlogFooter from '@c/BlogFooter'
+import BlogHeader from '@c/BlogHeader'
+import BlogHome from '@views/BlogHome'
+import BlogContent from '@views/BlogContent'
+import { getNavLinks, getHomeArticles, getCategories, getNewestArticles, getPopularArticles } from '@api/api'
+
+export default {
+  components: {
+    BlogFooter, BlogHeader, BlogHome, BlogContent
+  },
+  data () {
+    return {
+      links: [],
+      homeArticles: [],
+      categories: [],
+      newestArticles: [],
+      popularArticles: []
+    }
+  },
+  mounted () {
+    this.fetchNavLinks()
+    this.fetchHomeArticles()
+    this.fetchCategories()
+    this.fecthNewestArticles()
+    this.fecthPopularArticles()
+  },
+  methods: {
+    async fetchNavLinks () {
+      const links = await getNavLinks()
+      this.links = links.data
+    },
+    async fetchHomeArticles () {
+      const articles = await getHomeArticles()
+      this.homeArticles = articles.data
+    },
+    async fetchCategories () {
+      const categories = await getCategories()
+      this.categories = categories.data
+    },
+    async fecthNewestArticles () {
+      const newestArticles = await getNewestArticles()
+      this.newestArticles = newestArticles.data
+    },
+    async fecthPopularArticles () {
+      const popularArticles = await getPopularArticles()
+      this.popularArticles = popularArticles.data
     }
   }
 }
+</script>
+
+<style lang="scss">
 </style>
