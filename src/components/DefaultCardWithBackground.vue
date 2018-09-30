@@ -3,7 +3,7 @@
         <div class="card_background" :style="'background-image:url('+image+')'"></div>
         <div class="card-body">
             <div class="card-title card-title-small">
-                    <router-link :to="path">{{title}}</router-link>
+                <router-link :to="path">{{title}}</router-link>
             </div>
         </div>
     </div>

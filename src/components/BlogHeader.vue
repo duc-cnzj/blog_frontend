@@ -73,4 +73,5 @@ export default {
 .header {
   border-radius: 0 0 10px 10px;
 }
+
 </style>
