@@ -17,6 +17,6 @@
 
 <script>
 export default {
-  props: ['image', 'path', 'title', 'author', 'created_at', 'author_url']
+  props: ['image', 'path', 'title', 'author', 'created_at', 'author_url', 'desc']
 }
 </script>

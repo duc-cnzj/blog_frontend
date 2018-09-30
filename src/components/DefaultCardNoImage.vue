@@ -1,9 +1,8 @@
 <template>
-    <div class="card card_default card_default_with_background grid-item">
-        <div class="card_background" :style="'background-image:url('+image+')'"></div>
+    <div class="card card_default card_default_no_image grid-item">
         <div class="card-body">
             <div class="card-title card-title-small">
-                    <router-link :to="path">{{title}}</router-link>
+                <router-link :to="path">{{title}}</router-link>
             </div>
         </div>
     </div>

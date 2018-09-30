@@ -35,90 +35,93 @@
                             <div class="section_content">
                                 <div class="grid clearfix" v-if="this.newestArticles.length > 0">
 
-                                    <!-- Largest Card With Image -->
-                                    <div class="card card_largest_with_image grid-item">
-                                        <img class="card-img-top" :src="newestArticles[0].headImage" alt="headimage">
-                                        <div class="card-body">
-                                            <div class="card-title">
-                                                <router-link :to="'/articles/'+newestArticles[0].id">{{newestArticles[0].title}}</router-link>
-                                                <p class="card-text">{{newestArticles[0].desc}}</p>
-                                                <small class="post_meta"><a href="#">{{newestArticles[0].author}}</a><span>{{newestArticles[0].created_at}}</span></small>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!-- LargestCardWithImage -->
+                                    <largest-card-with-image
+                                            :image="'images/post_11.jpg'"
+                                            :path="'articles/bg1'"
+                                            :title="'LargestCardWithImage'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- Small Card Without Image -->
-                                    <div class="card card_default card_small_no_image grid-item">
-                                        <div class="card-body">
-                                            <div class="card-title card-title-small">
-                                                <router-link :to="'/articles/'+newestArticles[1].id">{{newestArticles[1].title}}</router-link>
-                                            </div>
-                                            <small class="post_meta"><a href="#">{{newestArticles[1].author}}</a><span>{{newestArticles[1].created_at}}</span></small>
-                                        </div>
-                                    </div>
+                                    <small-card-without-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
-                                    <!-- Small Card With Background -->
-                                    <div class="card card_default card_small_with_background grid-item">
-                                        <div class="card_background" :style="'background-image:url('+ newestArticles[2].headImage +')'"></div>
-                                        <div class="card-body">
-                                            <div class="card-title card-title-small">
-                                                <router-link :to="'/articles/'+newestArticles[2].id">{{newestArticles[2].title}}</router-link>
-                                            </div>
-                                            <small class="post_meta"><a href="#">{{newestArticles[2].author}}</a><span>{{newestArticles[2].created_at}}</span></small>
-                                        </div>
-                                    </div>
-
-                                    <!-- Small Card With Image -->
-                                    <div class="card card_small_with_image grid-item">
-                                        <img class="card-img-top" :src="newestArticles[3].headImage" alt="headimage">
-                                        <div class="card-body">
-                                            <div class="card-title card-title-small">
-                                                <router-link :to="'/articles/'+newestArticles[3].id">{{newestArticles[3].title}}</router-link>
-                                            </div>
-                                            <small class="post_meta"><a href="#">{{newestArticles[3].author}}</a><span>{{newestArticles[3].created_at}}</span></small>
-                                        </div>
-                                    </div>
+                                    <!-- SmallCardWithBackground -->
+                                    <small-card-with-background
+                                            :image="'images/post_11.jpg'"
+                                            :path="'articles/bg1'"
+                                            :title="'SmallCardWithBackground'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- Small Card With Image -->
-                                    <div class="card card_small_with_image grid-item">
-                                        <img class="card-img-top" :src="newestArticles[4].headImage" alt="headimage">
-                                        <div class="card-body">
-                                            <div class="card-title card-title-small">
-                                                <router-link :to="'/articles/'+newestArticles[4].id">{{newestArticles[4].title}}</router-link>
-                                            </div>
-                                            <small class="post_meta"><a href="#">{{newestArticles[4].author}}</a><span>{{newestArticles[4].created_at}}</span></small>
-                                        </div>
-                                    </div>
+                                    <small-card-with-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
+
+                                    <!-- Small Card With Image -->
+                                    <small-card-with-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- Default Card No Image -->
-
-                                    <div class="card card_default card_default_no_image grid-item">
-                                        <div class="card-body">
-                                            <div class="card-title card-title-small">
-                                                <router-link :to="'/articles/'+newestArticles[5].id">{{newestArticles[5].title}}</router-link>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Default Card No Image -->
-
-                                    <div class="card card_default card_default_no_image grid-item">
-                                        <div class="card-body">
-                                            <div class="card-title card-title-small">
-                                                <router-link :to="'/articles/'+newestArticles[6].id">{{newestArticles[6].title}}</router-link>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <default-card-no-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- Default Card No Image -->
+                                    <default-card-no-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
-                                    <div class="card card_default card_default_no_image grid-item">
-                                        <div class="card-body">
-                                            <div class="card-title card-title-small">
-                                                <router-link :to="'/articles/'+newestArticles[7].id">{{newestArticles[7].title}}</router-link>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <!-- Default Card No Image -->
+                                    <default-card-no-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                 </div>
                             </div>
@@ -133,37 +136,125 @@
                                 <div class="grid clearfix">
 
                                     <!-- Small Card With Image -->
-                                    <small-card-with-image :image="'images/post_10.jpg'" :path="'articles/1'" :title="'duc small big'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-with-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- SmallCardWithoutImage -->
-                                    <small-card-without-image :image="'images/post_10.jpg'" :path="'articles/1'" :title="'duc small big'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-without-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- Small Card With Image -->
-                                    <small-card-with-image :image="'images/post_10.jpg'" :path="'articles/1'" :title="'duc small big'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-with-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- Small Card With Image -->
-                                    <small-card-with-image :image="'images/post_10.jpg'" :path="'articles/1'" :title="'duc small big'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-with-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- SmallCardWithBackground -->
-                                    <small-card-with-background :image="'images/post_11.jpg'" :path="'articles/bg1'" :title="'SmallCardWithBackground'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-with-background
+                                            :image="'images/post_11.jpg'"
+                                            :path="'articles/bg1'"
+                                            :title="'SmallCardWithBackground'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- SmallCardWithBackground -->
-                                    <small-card-with-background :image="'images/post_11.jpg'" :path="'articles/bg1'" :title="'SmallCardWithBackground'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-with-background
+                                            :image="'images/post_11.jpg'"
+                                            :path="'articles/bg1'"
+                                            :title="'SmallCardWithBackground'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- Small Card With Image -->
-                                    <small-card-with-image :image="'images/post_10.jpg'" :path="'articles/1'" :title="'duc small big'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-with-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- SmallCardWithoutImage -->
-                                    <small-card-without-image :image="'images/post_10.jpg'" :path="'articles/1'" :title="'duc small big'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-without-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- SmallCardWithoutImage -->
-                                    <small-card-without-image :image="'images/post_10.jpg'" :path="'articles/1'" :title="'duc small big'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-without-image
+                                            :image="'images/post_10.jpg'"
+                                            :path="'articles/1'"
+                                            :title="'duc small big'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- SmallCardWithBackground -->
-                                    <small-card-with-background :image="'images/post_11.jpg'" :path="'articles/bg1'" :title="'SmallCardWithBackground'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <small-card-with-background
+                                            :image="'images/post_11.jpg'"
+                                            :path="'articles/bg1'"
+                                            :title="'SmallCardWithBackground'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                     <!-- DefaultCardWithBackground -->
-                                    <default-card-with-background :image="'images/post_11.jpg'" :path="'articles/bg1'" :title="'default'" :author="'duc'" :author_url="'duc'" :created_at="'2018'" />
+                                    <default-card-with-background
+                                            :image="'images/post_11.jpg'"
+                                            :path="'articles/bg1'"
+                                            :title="'default'"
+                                            :author="'duc'"
+                                            :author_url="'duc'"
+                                            :created_at="'2018'"
+                                            :desc="'desc'"
+                                    />
 
                                 </div>
 
@@ -189,10 +280,12 @@ import SmallCardWithImage from '@c/SmallCardWithImage'
 import SmallCardWithoutImage from '@c/SmallCardWithoutImage'
 import SmallCardWithBackground from '@c/SmallCardWithBackground'
 import DefaultCardWithBackground from '@c/DefaultCardWithBackground'
+import LargestCardWithImage from '@c/LargestCardWithImage'
+import DefaultCardNoImage from '@c/DefaultCardNoImage'
 
 export default {
   components: {
-    SmallCardWithImage, SmallCardWithoutImage, SmallCardWithBackground, DefaultCardWithBackground
+    SmallCardWithImage, SmallCardWithoutImage, SmallCardWithBackground, DefaultCardWithBackground, LargestCardWithImage, DefaultCardNoImage
   },
   props: [
     'categories', 'newestArticles', 'popularArticles'
