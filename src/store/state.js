@@ -1,5 +1,6 @@
 export default {
   currentArticle: {},
   trendingArticles: [],
-  categories: []
+  categories: [],
+  welcome: false
 }

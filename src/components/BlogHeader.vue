@@ -1,11 +1,13 @@
 <template>
     <div>
-        <header class="header">
+        <header class="header" :class="scrollClass">
             <div class="container">
                 <div class="row">
                     <div class="col">
                         <div class="header_content d-flex flex-row align-items-center justify-content-start">
-                            <div class="logo"><a href="#">duc's blog</a></div>
+                            <div class="logo">
+                                <router-link to="/home">duc's blog</router-link>
+                            </div>
                             <nav class="main_nav">
                                 <ul>
                                     <li v-for="(l, i) in links" :key="i">
@@ -24,7 +26,7 @@
                                 </form>
                                 </div>
 
-                                <div class="hamburger ml-auto menu_mm">
+                                <div class="hamburger ml-auto menu_mm"  @click="menuActive=!menuActive">
                                     <i class="fa fa-bars trans_200 menu_mm" aria-hidden="true"></i>
                                 </div>
                                 <!-- </div> -->
@@ -34,14 +36,14 @@
                 </div>
         </header>
 
-        <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
-            <div class="menu_close_container">
+        <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400" :class="menuActiveClass">
+            <div class="menu_close_container" @click="menuActive=!menuActive">
                 <div class="menu_close">
                     <div></div>
                     <div></div>
                 </div>
             </div>
-            <div class="logo menu_mm"><a href="#">Avision</a></div>
+            <div class="logo menu_mm"><a href="#">duc's blog</a></div>
             <div class="search">
                 <form action="#">
                     <input type="search" class="header_search_input menu_mm" required="required" placeholder="搜索文章....😄"/>
@@ -61,7 +63,21 @@
 
 <script>
 export default {
-  props: ['links']
+  props: ['links', 'scrolled'],
+  data () {
+    return {
+      menuActive: false
+    }
+  },
+  computed: {
+    scrollClass () {
+      return this.scrolled ? ['scrolled'] : []
+    },
+
+    menuActiveClass () {
+      return this.menuActive ? ['active'] : []
+    }
+  }
 }
 </script>
 

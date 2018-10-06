@@ -1224,3 +1224,29 @@ section {
 .section_content {
 	padding-top: 33px;
 }
+
+.home {
+	width: 100%;
+	height: 360px;
+}
+
+.home_background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.home_content {
+	position: absolute;
+	top: 59%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	max-width: 440px;
+	text-align: center;
+}

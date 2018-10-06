@@ -1,5 +1,5 @@
 <template>
-    <div class="card card_default card_small_no_image grid-item">
+    <div class="card card_default card_small_no_image">
         <div class="card-body">
             <div class="card-title card-title-small">
                 <router-link :to="path">{{title}}</router-link>

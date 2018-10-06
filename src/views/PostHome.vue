@@ -1,15 +1,14 @@
 <template>
-    <div class="home">
-        <div class="home_background parallax-window" data-parallax="scroll" :style="'background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(' + currentArticle.headImage + ');'" data-image-src="images/post.jpg" data-speed="0.8"></div>
-        <div class="home_content">
-            <div class="post_category trans_200"><a href="category.html" class="trans_200">{{currentArticle.category}}</a></div>
-            <div class="post_title">{{currentArticle.title}}</div>
-        </div>
+  <div class="home">
+    <div class="home_background parallax-window" data-parallax="scroll" :style="'background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(' + currentArticle.headImage + ');'" data-image-src="images/post.jpg" data-speed="0.8"></div>
+    <div class="home_content">
+      <div class="post_category trans_200"><a href="category.html" class="trans_200">{{currentArticle.category}}</a></div>
+      <div class="post_title">{{currentArticle.title}}</div>
     </div>
+  </div>
 </template>
 
 <script>
-import post from '@assets/post.js'
 import { mapActions, mapState } from 'vuex'
 
 export default {
@@ -22,8 +21,13 @@ export default {
     ...mapState(['currentArticle'])
   },
 
+  watch: {
+    '$route': function () {
+      this.fetchArticle(this.$route.params.id)
+    }
+  },
+
   mounted () {
-    post()
     this.fetchArticle(this.$route.params.id)
   },
 
@@ -37,10 +41,15 @@ export default {
 
 <style lang="scss" scoped>
 @charset "utf-8";
+
+.home_content {
+    position: absolute;
+}
+
 .post_category {
   background: rgba(255, 255, 255, 0.5) !important;
   &:hover {
-      background: #f7f7f7 !important;
+    background: #f7f7f7 !important;
   }
 }
 * {
@@ -533,29 +542,6 @@ section {
 5. Home
 *********************************/
 
-.home {
-  width: 100%;
-  height: 360px;
-}
-.home_background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.home_content {
-  position: absolute;
-  top: 59%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  max-width: 440px;
-  text-align: center;
-}
 .post_category {
   margin: 0 auto;
 }

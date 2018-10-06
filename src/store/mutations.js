@@ -11,5 +11,9 @@ export default {
 
   [types.SET_CATEGORIES] (state, { categories }) {
     state.categories = categories
+  },
+
+  [types.WELCOME] (state) {
+    state.welcome = true
   }
 }

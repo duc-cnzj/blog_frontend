@@ -19,9 +19,10 @@
                     </li>
                   </ul>
                 </div>
-                <div class="section_panel_more">
+
+                <div class="section_panel_more" v-if="moreCategories.length > 0">
                   <ul>
-                    <li>more
+                    <li>其他
                       <ul>
                         <li v-for="(c, i) in moreCategories" :key="i" class="more-li">
                           <router-link :to="'/categories/'+c.id" exact>{{ c.name }}</router-link>
@@ -31,80 +32,106 @@
                   </ul>
                 </div>
               </div>
-              <div class="section_content">
-                <div class="grid clearfix" v-if="newestArticles.length > 0">
 
-                  <!-- LargestCardWithImage -->
-                  <largest-card-with-image :image="newestArticles[0].headImage" :path="'/articles/'+newestArticles[0].id" :title="newestArticles[0].title" :author="newestArticles[0].author.name" :author_url="'/authors/'+newestArticles[0].author.id" :created_at="newestArticles[0].created_at" :desc="newestArticles[0].desc" />
-
-                  <!-- Small Card Without Image -->
-                  <small-card-without-image :image="newestArticles[1].headImage" :path="'/articles/'+newestArticles[1].id" :title="newestArticles[1].title" :author="newestArticles[1].author.name" :author_url="'/authors/'+newestArticles[1].author.id" :created_at="newestArticles[1].created_at" :desc="newestArticles[1].desc" />
-
-                  <!-- SmallCardWithBackground -->
-                  <small-card-with-background :image="newestArticles[2].headImage" :path="'/articles/'+newestArticles[2].id" :title="newestArticles[2].title" :author="newestArticles[2].author.name" :author_url="'/authors/'+newestArticles[2].author.id" :created_at="newestArticles[2].created_at" :desc="newestArticles[2].desc" />
-
-                  <!-- Small Card With Image -->
-                  <small-card-with-image :image="newestArticles[3].headImage" :path="'/articles/'+newestArticles[3].id" :title="newestArticles[3].title" :author="newestArticles[3].author.name" :author_url="'/authors/'+newestArticles[3].author.id" :created_at="newestArticles[3].created_at" :desc="newestArticles[3].desc" />
-
-                  <!-- Small Card With Image -->
-                  <small-card-with-image :image="newestArticles[4].headImage" :path="'/articles/'+newestArticles[4].id" :title="newestArticles[4].title" :author="newestArticles[4].author.name" :author_url="'/authors/'+newestArticles[4].author.id" :created_at="newestArticles[4].created_at" :desc="newestArticles[4].desc" />
-
-                  <!-- Default Card No Image -->
-                  <default-card-no-image :image="newestArticles[5].headImage" :path="'/articles/'+newestArticles[5].id" :title="newestArticles[5].title" :author="newestArticles[5].author.name" :author_url="'/authors/'+newestArticles[5].author.id" :created_at="newestArticles[5].created_at" :desc="newestArticles[5].desc" />
-
-                  <!-- Default Card No Image -->
-                  <default-card-no-image :image="newestArticles[6].headImage" :path="'/articles/'+newestArticles[6].id" :title="newestArticles[6].title" :author="newestArticles[6].author.name" :author_url="'/authors/'+newestArticles[6].author.id" :created_at="newestArticles[6].created_at" :desc="newestArticles[6].desc" />
-
-                  <!-- Default Card No Image -->
-                  <default-card-no-image :image="newestArticles[7].headImage" :path="'/articles/'+newestArticles[7].id" :title="newestArticles[7].title" :author="newestArticles[7].author.name" :author_url="'/authors/'+newestArticles[7].author.id" :created_at="newestArticles[7].created_at" :desc="newestArticles[7].desc" />
-
+              <div v-if="newestArticles.length > 0">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <div v-if="newestArticles[0] !== undefined">
+                      <largest-card-with-image :image="newestArticles[0].headImage" :path="'/articles/'+newestArticles[0].id" :title="newestArticles[0].title" :author="newestArticles[0].author.name" :author_url="'/authors/'+newestArticles[0].author.id" :created_at="newestArticles[0].created_at" :desc="newestArticles[0].desc" />
+                    </div>
+                  </div>
+                  <div class="col-sm-4">
+                    <div v-if="newestArticles[1] !== undefined">
+                      <small-card-with-background :image="newestArticles[1].headImage" :path="'/articles/'+newestArticles[1].id" :title="newestArticles[1].title" :author="newestArticles[1].author.name" :author_url="'/authors/'+newestArticles[1].author.id" :created_at="newestArticles[1].created_at" :desc="newestArticles[1].desc" />
+                    </div>
+                    <div v-if="newestArticles[2] !== undefined">
+                      <default-card-no-image :image="newestArticles[2].headImage" :path="'/articles/'+newestArticles[2].id" :title="newestArticles[2].title" :author="newestArticles[2].author.name" :author_url="'/authors/'+newestArticles[2].author.id" :created_at="newestArticles[2].created_at" :desc="newestArticles[2].desc" />
+                    </div>
+                  </div>
                 </div>
+                <div class="section_content card-columns">
+                  <div v-if="newestArticles[3] !== undefined">
+                    <small-card-with-image :image="newestArticles[3].headImage" :path="'/articles/'+newestArticles[3].id" :title="newestArticles[3].title" :author="newestArticles[3].author.name" :author_url="'/authors/'+newestArticles[3].author.id" :created_at="newestArticles[3].created_at" :desc="newestArticles[3].desc" />
+                  </div>
+                  <div v-if="newestArticles[4] !== undefined">
+                    <small-card-with-background :image="newestArticles[4].headImage" :path="'/articles/'+newestArticles[4].id" :title="newestArticles[4].title" :author="newestArticles[4].author.name" :author_url="'/authors/'+newestArticles[4].author.id" :created_at="newestArticles[4].created_at" :desc="newestArticles[4].desc" />
+                  </div>
+                  <div v-if="newestArticles[5] !== undefined">
+                    <default-card-no-image :image="newestArticles[5].headImage" :path="'/articles/'+newestArticles[5].id" :title="newestArticles[5].title" :author="newestArticles[5].author.name" :author_url="'/authors/'+newestArticles[5].author.id" :created_at="newestArticles[5].created_at" :desc="newestArticles[5].desc" />
+                  </div>
+                  <div v-if="newestArticles[6] !== undefined">
+                    <small-card-with-background :image="newestArticles[6].headImage" :path="'/articles/'+newestArticles[6].id" :title="newestArticles[6].title" :author="newestArticles[6].author.name" :author_url="'/authors/'+newestArticles[6].author.id" :created_at="newestArticles[6].created_at" :desc="newestArticles[6].desc" />
+                  </div>
+                  <div v-if="newestArticles[7] !== undefined">
+                    <default-card-no-image :image="newestArticles[7].headImage" :path="'/articles/'+newestArticles[7].id" :title="newestArticles[7].title" :author="newestArticles[7].author.name" :author_url="'/authors/'+newestArticles[7].author.id" :created_at="newestArticles[7].created_at" :desc="newestArticles[7].desc" />
+                  </div>
+                  <div v-if="newestArticles[8] !== undefined">
+                    <default-card-no-image :image="newestArticles[8].headImage" :path="'/articles/'+newestArticles[8].id" :title="newestArticles[8].title" :author="newestArticles[8].author.name" :author_url="'/authors/'+newestArticles[8].author.id" :created_at="newestArticles[8].created_at" :desc="newestArticles[8].desc" />
+                  </div>
+                  <div v-if="newestArticles[9] !== undefined">
+                    <default-card-no-image :image="newestArticles[9].headImage" :path="'/articles/'+newestArticles[9].id" :title="newestArticles[9].title" :author="newestArticles[9].author.name" :author_url="'/authors/'+newestArticles[9].author.id" :created_at="newestArticles[9].created_at" :desc="newestArticles[9].desc" />
+                  </div>
+                  <div v-if="newestArticles[10] !== undefined">
+                    <small-card-with-image :image="newestArticles[10].headImage" :path="'/articles/'+newestArticles[10].id" :title="newestArticles[10].title" :author="newestArticles[10].author.name" :author_url="'/authors/'+newestArticles[10].author.id" :created_at="newestArticles[10].created_at" :desc="newestArticles[10].desc" />
+                  </div>
+                  <div v-if="newestArticles[11] !== undefined">
+                    <default-card-no-image :image="newestArticles[11].headImage" :path="'/articles/'+newestArticles[11].id" :title="newestArticles[11].title" :author="newestArticles[11].author.name" :author_url="'/authors/'+newestArticles[11].author.id" :created_at="newestArticles[11].created_at" :desc="newestArticles[11].desc" />
+                  </div>
+                  <div v-if="newestArticles[12] !== undefined">
+                    <small-card-with-background :image="newestArticles[12].headImage" :path="'/articles/'+newestArticles[12].id" :title="newestArticles[12].title" :author="newestArticles[12].author.name" :author_url="'/authors/'+newestArticles[12].author.id" :created_at="newestArticles[12].created_at" :desc="newestArticles[12].desc" />
+                  </div>
+                </div>
+              </div>
+
+              <div v-if="newestArticles.length === 0">
+                <loading />
               </div>
             </div>
 
             <!-- Blog Section - Latest -->
             <div class="blog_section">
-              <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+              <div class="section_panel  align-items-center justify-content-start">
                 <div class="section_title">最近发表的文章</div>
               </div>
-              <div class="section_content" v-if="popularArticles.length > 0">
-                <div class="grid clearfix">
 
+              <div class="section_content card-columns" v-if="popularArticles.length > 0">
+
+                <div v-if="popularArticles[0] !== undefined">
                   <!-- Small Card With Image -->
                   <small-card-with-image :image="popularArticles[0].headImage" :path="'/articles/'+popularArticles[0].id" :title="popularArticles[0].title" :author="popularArticles[0].author.name" :author_url="'/authors/'+popularArticles[0].author.id" :created_at="popularArticles[0].created_at" :desc="popularArticles[0].desc" />
-
-                  <!-- SmallCardWithoutImage -->
-                  <small-card-without-image :image="popularArticles[1].headImage" :path="'/articles/'+popularArticles[1].id" :title="popularArticles[1].title" :author="popularArticles[1].author.name" :author_url="'/authors/'+popularArticles[1].author.id" :created_at="popularArticles[1].created_at" :desc="popularArticles[1].desc" />
-
+                </div>
+                <div v-if="popularArticles[1] !== undefined">
                   <!-- Small Card With Image -->
-                  <small-card-with-image :image="popularArticles[2].headImage" :path="'/articles/'+popularArticles[2].id" :title="popularArticles[2].title" :author="popularArticles[2].author.name" :author_url="'/authors/'+popularArticles[2].author.id" :created_at="popularArticles[2].created_at" :desc="popularArticles[2].desc" />
-
+                  <small-card-with-image :image="popularArticles[1].headImage" :path="'/articles/'+popularArticles[1].id" :title="popularArticles[1].title" :author="popularArticles[1].author.name" :author_url="'/authors/'+popularArticles[1].author.id" :created_at="popularArticles[1].created_at" :desc="popularArticles[1].desc" />
+                </div>
+                <div v-if="popularArticles[2] !== undefined">
                   <!-- Small Card With Image -->
-                  <small-card-with-image :image="popularArticles[3].headImage" :path="'/articles/'+popularArticles[3].id" :title="popularArticles[3].title" :author="popularArticles[3].author.name" :author_url="'/authors/'+popularArticles[3].author.id" :created_at="popularArticles[3].created_at" :desc="popularArticles[3].desc" />
-
+                  <small-card-with-image :image="popularArticles[2].headImage" :path="'/articles/'+popularArticles[3].id" :title="popularArticles[3].title" :author="popularArticles[3].author.name" :author_url="'/authors/'+popularArticles[3].author.id" :created_at="popularArticles[3].created_at" :desc="popularArticles[3].desc" />
+                </div>
+                <div v-if="popularArticles[3] !== undefined">
                   <!-- SmallCardWithBackground -->
                   <small-card-with-background :image="popularArticles[4].headImage" :path="'/articles/'+popularArticles[4].id" :title="popularArticles[4].title" :author="popularArticles[4].author.name" :author_url="'/authors/'+popularArticles[4].author.id" :created_at="popularArticles[4].created_at" :desc="popularArticles[4].desc" />
-
-                  <!-- SmallCardWithBackground -->
-                  <small-card-with-background :image="popularArticles[5].headImage" :path="'/articles/'+popularArticles[5].id" :title="popularArticles[5].title" :author="popularArticles[5].author.name" :author_url="'/authors/'+popularArticles[5].author.id" :created_at="popularArticles[5].created_at" :desc="popularArticles[5].desc" />
-
-                  <!-- Small Card With Image -->
-                  <small-card-with-image :image="popularArticles[6].headImage" :path="'/articles/'+popularArticles[6].id" :title="popularArticles[6].title" :author="popularArticles[6].author.name" :author_url="'/authors/'+popularArticles[6].author.id" :created_at="popularArticles[6].created_at" :desc="popularArticles[6].desc" />
-
-                  <!-- SmallCardWithoutImage -->
-                  <small-card-without-image :image="popularArticles[7].headImage" :path="'/articles/'+popularArticles[7].id" :title="popularArticles[7].title" :author="popularArticles[7].author.name" :author_url="'/authors/'+popularArticles[7].author.id" :created_at="popularArticles[7].created_at" :desc="popularArticles[7].desc" />
-
-                  <!-- SmallCardWithoutImage -->
-                  <small-card-without-image :image="popularArticles[8].headImage" :path="'/articles/'+popularArticles[8].id" :title="popularArticles[8].title" :author="popularArticles[8].author.name" :author_url="'/authors/'+popularArticles[8].author.id" :created_at="popularArticles[8].created_at" :desc="popularArticles[8].desc" />
-
-                  <!-- DefaultCardWithBackground -->
-                  <default-card-with-background :image="popularArticles[9].headImage" :path="'/articles/'+popularArticles[9].id" :title="popularArticles[9].title" :author="popularArticles[9].author.name" :author_url="'/authors/'+popularArticles[9].author.id" :created_at="popularArticles[9].created_at" :desc="popularArticles[9].desc" />
-
-                  <!-- DefaultCardWithBackground -->
-                  <default-card-with-background :image="popularArticles[10].headImage" :path="'/articles/'+popularArticles[10].id" :title="popularArticles[10].title" :author="popularArticles[10].author.name" :author_url="'/authors/'+popularArticles[10].author.id" :created_at="popularArticles[10].created_at" :desc="popularArticles[10].desc" />
-
                 </div>
+                <div v-if="popularArticles[4] !== undefined">
+                  <!-- SmallCardWithBackground -->
+                  <small-card-with-background :image="popularArticles[4].headImage" :path="'/articles/'+popularArticles[4].id" :title="popularArticles[4].title" :author="popularArticles[4].author.name" :author_url="'/authors/'+popularArticles[4].author.id" :created_at="popularArticles[4].created_at" :desc="popularArticles[4].desc" />
+                </div>
+                <div v-if="popularArticles[5] !== undefined">
+                  <!-- Small Card With Image -->
+                  <small-card-with-image :image="popularArticles[5].headImage" :path="'/articles/'+popularArticles[6].id" :title="popularArticles[6].title" :author="popularArticles[6].author.name" :author_url="'/authors/'+popularArticles[6].author.id" :created_at="popularArticles[6].created_at" :desc="popularArticles[6].desc" />
+                </div>
+                <div v-if="popularArticles[6] !== undefined">
+                  <!-- SmallCardWithoutImage -->
+                  <small-card-without-image :image="popularArticles[6].headImage" :path="'/articles/'+popularArticles[6].id" :title="popularArticles[6].title" :author="popularArticles[6].author.name" :author_url="'/authors/'+popularArticles[6].author.id" :created_at="popularArticles[6].created_at" :desc="popularArticles[6].desc" />
+                </div>
+                <div v-if="popularArticles[7] !== undefined">
+                  <!-- DefaultCardWithBackground -->
+                  <default-card-with-background :image="popularArticles[7].headImage" :path="'/articles/'+popularArticles[7].id" :title="popularArticles[7].title" :author="popularArticles[7].author.name" :author_url="'/authors/'+popularArticles[7].author.id" :created_at="popularArticles[7].created_at" :desc="popularArticles[7].desc" />
+                </div>
+              </div>
 
+              <div v-if="popularArticles.length === 0">
+                <loading />
               </div>
             </div>
 
@@ -139,11 +166,13 @@ import SmallCardWithBackground from '@c/SmallCardWithBackground'
 import DefaultCardWithBackground from '@c/DefaultCardWithBackground'
 import LargestCardWithImage from '@c/LargestCardWithImage'
 import DefaultCardNoImage from '@c/DefaultCardNoImage'
+import Loading from '@c/Loading'
 import { getCategories, getNewestArticles, getPopularArticles } from '@api/api'
+import custom from '@assets/custom.js'
 
 export default {
   components: {
-    SmallCardWithImage, SmallCardWithoutImage, SmallCardWithBackground, DefaultCardWithBackground, LargestCardWithImage, DefaultCardNoImage, BlogSiderbar
+    Loading, SmallCardWithImage, SmallCardWithoutImage, SmallCardWithBackground, DefaultCardWithBackground, LargestCardWithImage, DefaultCardNoImage, BlogSiderbar
   },
   data () {
     return {
@@ -153,6 +182,7 @@ export default {
     }
   },
   mounted () {
+    custom()
     this.fetchCategories()
     this.fecthNewestArticles()
     this.fecthPopularArticles()

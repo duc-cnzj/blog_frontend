@@ -1,5 +1,5 @@
 <template>
-    <div class="card card_small_with_image grid-item">
+    <div class="card card_small_with_image">
         <img class="card-img-top" :src="image" alt="">
         <div class="card-body">
             <div class="card-title card-title-small">

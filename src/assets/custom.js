@@ -17,6 +17,8 @@
 ******************************/
 export default function () {
   $(document).ready(function () {
+    'use strict'
+
     /*
 
 	1. Vars and Inits
@@ -38,13 +40,13 @@ export default function () {
       setHeader()
     })
 
-    initMenu()
-    initHomeSlider()
-    initVideo()
+    // initMenu()
+    // initHomeSlider()
+    // initVideo()
     initTopSlider()
     initVidSlider()
     initEventsSlider()
-    initGrid()
+    // initGrid()
 
     /*
 
@@ -108,15 +110,16 @@ export default function () {
     function initHomeSlider () {
       if ($('.home_slider').length) {
         var homeSlider = $('.home_slider')
-        homeSlider.owlCarousel({
-          items: 1,
-          autoplay: false,
-          loop: true,
-          smartSpeed: 1200,
-          dots: true,
-          dotsContainer: '.custom_dots_home_slider',
-          nav: false
-        })
+        homeSlider.owlCarousel(
+          {
+            items: 1,
+            autoplay: false,
+            loop: true,
+            smartSpeed: 1200,
+            dots: true,
+            dotsContainer: '.custom_dots_home_slider',
+            nav: false
+          })
 
         if ($('.home_slider_next').length) {
           $('.home_slider_next').on('click', function () {
@@ -149,9 +152,7 @@ export default function () {
         /* Change active class for dots when slide changes by nav or touch */
         homeSlider.on('changed.owl.carousel', function (event) {
           $('.custom_dot_home_slider').removeClass('active')
-          $('.custom_dots_home_slider li')
-            .eq(event.page.index)
-            .addClass('active')
+          $('.custom_dots_home_slider li').eq(event.page.index).addClass('active')
         })
       }
     }
@@ -163,23 +164,19 @@ export default function () {
 	*/
 
     function initVideo () {
-      // if($("#P1").length)
-      // {
-      // 	$("#P1").YTPlayer();
-      // 	if($('.video_container').length)
-      // 	{
-      // 		var videos = $('.video_container');
-      // 		videos.each(function()
-      // 		{
-      // 			var video = $(this);
-      // 			video.on('click', function()
-      // 			{
-      // 				videos.removeClass('active');
-      // 				video.addClass('active');
-      // 			});
-      // 		});
-      // 	}
-      // }
+      if ($('#P1').length) {
+        $('#P1').YTPlayer()
+        if ($('.video_container').length) {
+          var videos = $('.video_container')
+          videos.each(function () {
+            var video = $(this)
+            video.on('click', function () {
+              videos.removeClass('active')
+              video.addClass('active')
+            })
+          })
+        }
+      }
     }
 
     /*
@@ -192,15 +189,16 @@ export default function () {
       if ($('.sidebar_slider_top').length) {
         var topSlider = $('.sidebar_slider_top')
 
-        topSlider.owlCarousel({
-          items: 1,
-          loop: true,
-          autoplay: false,
-          smartSpeed: 1200,
-          dots: true,
-          dotsContainer: '.custom_dots_top',
-          nav: false
-        })
+        topSlider.owlCarousel(
+          {
+            items: 1,
+            loop: true,
+            autoplay: false,
+            smartSpeed: 1200,
+            dots: true,
+            dotsContainer: '.custom_dots_top',
+            nav: false
+          })
 
         if ($('.custom_prev_top').length) {
           $('.custom_prev_top').on('click', function () {
@@ -227,9 +225,7 @@ export default function () {
         /* Change active class for dots when slide changes by nav or touch */
         topSlider.on('changed.owl.carousel', function (event) {
           $('.custom_dot_top').removeClass('active')
-          $('.custom_dots_top li')
-            .eq(event.page.index)
-            .addClass('active')
+          $('.custom_dots_top li').eq(event.page.index).addClass('active')
         })
       }
     }
@@ -244,15 +240,16 @@ export default function () {
       if ($('.sidebar_slider_vid').length) {
         var vidSlider = $('.sidebar_slider_vid')
 
-        vidSlider.owlCarousel({
-          items: 1,
-          loop: true,
-          autoplay: false,
-          smartSpeed: 1200,
-          dots: true,
-          dotsContainer: '.custom_dots_vid',
-          nav: false
-        })
+        vidSlider.owlCarousel(
+          {
+            items: 1,
+            loop: true,
+            autoplay: false,
+            smartSpeed: 1200,
+            dots: true,
+            dotsContainer: '.custom_dots_vid',
+            nav: false
+          })
 
         if ($('.custom_prev_vid').length) {
           $('.custom_prev_vid').on('click', function () {
@@ -279,9 +276,7 @@ export default function () {
         /* Change active class for dots when slide changes by nav or touch */
         vidSlider.on('changed.owl.carousel', function (event) {
           $('.custom_dot_vid').removeClass('active')
-          $('.custom_dots_vid li')
-            .eq(event.page.index)
-            .addClass('active')
+          $('.custom_dots_vid li').eq(event.page.index).addClass('active')
         })
       }
     }
@@ -296,15 +291,16 @@ export default function () {
       if ($('.sidebar_slider_events').length) {
         var vidSlider = $('.sidebar_slider_events')
 
-        vidSlider.owlCarousel({
-          items: 1,
-          loop: true,
-          autoplay: false,
-          smartSpeed: 1200,
-          dots: true,
-          dotsContainer: '.custom_dots_events',
-          nav: false
-        })
+        vidSlider.owlCarousel(
+          {
+            items: 1,
+            loop: true,
+            autoplay: false,
+            smartSpeed: 1200,
+            dots: true,
+            dotsContainer: '.custom_dots_events',
+            nav: false
+          })
 
         if ($('.custom_prev_events').length) {
           $('.custom_prev_events').on('click', function () {
@@ -331,9 +327,7 @@ export default function () {
         /* Change active class for dots when slide changes by nav or touch */
         vidSlider.on('changed.owl.carousel', function (event) {
           $('.custom_dot_events').removeClass('active')
-          $('.custom_dots_events li')
-            .eq(event.page.index)
-            .addClass('active')
+          $('.custom_dots_events li').eq(event.page.index).addClass('active')
         })
       }
     }
@@ -346,12 +340,13 @@ export default function () {
 
     function initGrid () {
       setTimeout(function () {
-        $('.grid').masonry({
-          itemSelector: '.grid-item',
-          columnWidth: '.card_default',
-          gutter: 30
-        })
-      }, 500)
+        $('.grid').masonry(
+          {
+            itemSelector: '.grid-item',
+            columnWidth: '.card_default',
+            gutter: 30
+          })
+      }, 50)
     }
   })
 }

@@ -42,25 +42,23 @@
                   <div class="row">
                     <div class="col-xl-8">
                       <div class="post_comment_form_container">
-                        <form action="#">
-                          <textarea class="comment_text" placeholder="你的评论...." required="required"></textarea>
-                          <button type="submit" class="comment_button">提交</button>
-                        </form>
+                        <textarea class="comment_text" v-model="postContent" placeholder="你的评论...."></textarea>
+                        <button type="submit" class="comment_button" @click.prevent="postComment">提交</button>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <!-- Comments -->
-                <div class="comments">
+                <div class="comments" v-if="comments.length > 0">
                   <div class="comments_title">评论列表 <span>(12)</span></div>
                   <div class="row">
                     <div class="col-xl-8">
                       <div class="comments_container">
                         <ul class="comment_list">
 
-                          <template v-for="comment in currentArticle.comments">
-                            <li class="comment" :key="comment.id">
+                          <template v-for="comment in comments">
+                            <li class="comment animated zoomIn" :key="comment.id">
                               <div class="comment_body">
                                 <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
                                   <div class="comment_author_image">
@@ -72,7 +70,7 @@
                                       </router-link>
                                       <span>{{comment.created_at}}</span>
                                     </small>
-                                    <button type="button" class="reply_button ml-auto">回复 Ta</button>
+                                    <button type="button" class="reply_button ml-auto" data-toggle="modal" data-target="#myModal" @click="reply(comment)">回复 Ta</button>
                                   </div>
                                   <div class="comment_content">
                                     <p>{{comment.body}}</p>
@@ -88,31 +86,133 @@
                 </div>
               </div>
             </div>
-            <div class="load_more">
+            <div class="load_more" @click="loadMoreComments" v-if="showLoadMoreBar">
               <div id="load_more" class="load_more_button text-center trans_200">Load More</div>
             </div>
 
-          </div>
-          <!-- Sidebar -->
-          <div class="col-lg-3">
-            <blog-siderbar />
-          </div>
+            <div v-if="loading">
+              <loading />
+            </div>
 
+            <hr />
+
+          </div>
+            <!-- Sidebar -->
+            <div class="col-lg-3">
+              <blog-siderbar />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 模态框 -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+              <!-- 模态框头部 -->
+              <div class="modal-header">
+                <h4 class="modal-title">回复: {{replyComment.author === undefined ? '' : replyComment.author.name}}</h4>
+                <!-- <code>{{replyComment.body}}</code> -->
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- 模态框主体 -->
+              <div class="modal-body">
+                <textarea type="text" class="form-control" v-model="modalValue" placeholder="...."/>
+                </div>
+
+              <!-- 模态框底部 -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" @click="doReply">回复</button>
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button> -->
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
 </template>
 
 <script>
 import BlogSiderbar from '@views/BlogSiderbar'
-
+import Loading from '@c/Loading'
+import _ from 'lodash'
+import { postComments } from '@api/api'
 import { mapState } from 'vuex'
 
 export default {
-  components: { BlogSiderbar },
+  components: { BlogSiderbar, Loading },
+
+  data () {
+    return {
+      loadMore: false,
+      loading: false,
+      commentNum: 1,
+      loadData: false,
+      modalValue: '',
+      postContent: '',
+      replyComment: {}
+    }
+  },
+
   computed: {
-    ...mapState(['currentArticle'])
+    ...mapState({ currentArticle: 'currentArticle' }),
+
+    comments () {
+      if (this.loadData) {
+        return this.currentArticle.comments
+      }
+
+      return _.take(this.currentArticle.comments, this.commentNum)
+    },
+
+    showLoadMoreBar () {
+      if (this.currentArticle.comments === undefined) {
+        return false
+      }
+      return !this.loadMore && this.currentArticle.comments.length > this.commentNum
+    }
+
+  },
+
+  methods: {
+    async postComment () {
+      const data = await postComments({
+        articleId: this.currentArticle.id,
+        postContent: this.postContent
+      })
+
+      this.postContent = ''
+      window.toastr.info('提交成功')
+      this.currentArticle.comments.unshift(data.data)
+    },
+
+    doReply () {
+      postComments({
+        articleId: this.currentArticle.id,
+        postContent: this.modalValue,
+        commentId: this.replyComment.id
+      })
+
+      this.modalValue = ''
+      window.toastr.success('回复成功')
+    },
+
+    reply (comment) {
+      this.replyComment = comment
+    },
+
+    loadMoreComments () {
+      this.loading = true
+      this.loadMore = true
+
+      setTimeout(() => {
+        this.loading = false
+        this.loadData = true
+      }, 1500)
+    }
   }
 }
 </script>

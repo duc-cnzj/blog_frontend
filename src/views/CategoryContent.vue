@@ -1,32 +1,32 @@
 <template>
-    <div class="page_content">
-        <div class="container">
-            <div class="row row-lg-eq-height">
-                <div class="col-lg-9 offset-lg-1">
-                    <div class="post_content">
+  <div class="page_content">
+    <div class="container">
+      <div class="row row-lg-eq-height">
+        <div class="col-lg-9 offset-lg-1">
+          <div class="post_content">
 
-                        <!-- Similar Posts -->
-                        <div class="similar_posts" v-if="categories !== undefined">
-                            <div class="grid clearfix">
-                                <template v-for="c in categories" >
-                                    <category-card :title="c.name" :path="'da'" :key="c.id" />
-                                </template>
-                            </div>
+            <template v-for="(c, index) in chunkCategories">
 
-                            <hr>
-
+              <!-- Similar Posts -->
+              <div class="similar_posts card-deck" v-if="categories !== undefined" :key="index">
+                <template v-for="i in c">
+                  <category-card :title="i.name" :path="'da'" :key="i.id" />
+                </template>
+              </div>
+            </template>
+            <hr>
                         </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+    </div>
 
 </template>
 
 <script>
 import CategoryCard from '@c/CategoryCard'
 import { mapActions, mapState } from 'vuex'
+import _ from 'lodash'
 
 export default {
   components: { CategoryCard },
@@ -35,7 +35,10 @@ export default {
   },
 
   computed: {
-    ...mapState(['categories'])
+    ...mapState(['categories']),
+    chunkCategories () {
+      return _.chunk(this.categories, 4)
+    }
   },
 
   methods: {
