@@ -21,7 +21,7 @@
               <!-- Post Body -->
 
               <div class="post_body">
-                <p v-html="currentArticle.content"></p>
+                <p v-html="currentArticle.content" v-highlight></p>
 
                 <!-- Post Tags -->
                 <div class="post_tags">
@@ -73,7 +73,7 @@
                                     <button type="button" class="reply_button ml-auto" data-toggle="modal" data-target="#myModal" @click="reply(comment)">回复 Ta</button>
                                   </div>
                                   <div class="comment_content">
-                                    <p>{{comment.body}}</p>
+                                    <p v-highlight>{{comment.body}}</p>
                                   </div>
                                 </div>
                             </li>
@@ -149,7 +149,7 @@ export default {
     return {
       loadMore: false,
       loading: false,
-      commentNum: 1,
+      commentNum: 3,
       loadData: false,
       modalValue: '',
       postContent: '',
@@ -217,7 +217,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" socped>
 /*********************************
 6. Post Content
 *********************************/
@@ -631,4 +631,5 @@ export default {
 .comment ul li {
   border-top: solid 1px #e5e5e5;
 }
+
 </style>

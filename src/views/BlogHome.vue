@@ -46,7 +46,7 @@
             </div>
 
             <div class="home_slider_next_container">
-              <div class="home_slider_next duc_slider" :style="nextHeadImage" @click="changeIndex(index)">
+              <div class="home_slider_next duc_slider" :style="'background-size: cover;' + nextHeadImage" @click="changeIndex(index)">
                 <div class="home_slider_next_background trans_400"></div>
                 <div class="home_slider_next_content trans_400">
                   <div class="home_slider_next_title">下一篇</div>
@@ -99,7 +99,7 @@ export default {
   created () {
     setTimeout(() => {
       this.init()
-    }, 100)
+    }, 1000)
     this.fetchHomeArticles()
   },
 

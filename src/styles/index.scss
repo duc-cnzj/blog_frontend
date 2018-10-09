@@ -1,1 +1,10 @@
 @import "~toastr/toastr.scss";
+
+.post_body img {
+    width: 100%;
+    box-shadow: #FC0 0 0 11px;
+}
+
+.post_body h1 {
+    text-align: center
+}

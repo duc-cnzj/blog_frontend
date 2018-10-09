@@ -10,8 +10,10 @@ import './styles/index.scss'
 import toastr from 'toastr'
 import toastrConfig from '@utils/toastr'
 import Focus from './directives/focus'
+import DucHighlight from './directives/Highlight'
 
 Vue.use(Focus)
+Vue.use(DucHighlight)
 
 toastr.options = toastrConfig
 

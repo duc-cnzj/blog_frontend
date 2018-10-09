@@ -91,7 +91,7 @@
             <!-- Blog Section - Latest -->
             <div class="blog_section">
               <div class="section_panel  align-items-center justify-content-start">
-                <div class="section_title">最近发表的文章</div>
+                <div class="section_title">最🔥文章</div>
               </div>
 
               <div class="section_content card-columns" v-if="popularArticles.length > 0">

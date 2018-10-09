@@ -81,8 +81,8 @@ export default {
   created () {
     setTimeout(() => {
       this.init()
-    }, 100)
-    this.fecthTrendingArticles()
+      this.fecthTrendingArticles()
+    }, 300)
   },
 
   data () {
