@@ -42,7 +42,7 @@
                   <div class="row">
                     <div class="col-xl-8">
                       <div class="post_comment_form_container">
-                        <textarea class="comment_text" v-model="postContent" placeholder="你的评论...."></textarea>
+                        <textarea id="emojiarea"></textarea>
                         <button type="submit" class="comment_button" @click.prevent="postComment">提交</button>
                       </div>
                     </div>
@@ -51,7 +51,7 @@
 
                 <!-- Comments -->
                 <div class="comments" v-if="visableComments.length > 0">
-                  <div class="comments_title">评论列表 <span>({{comments.length}})</span></div>
+                  <div class="comments_title">评论列表</div>
                   <div class="row">
                     <div class="col-xl-8">
                       <div class="comments_container">
@@ -138,7 +138,8 @@
 
               <!-- 模态框主体 -->
               <div class="modal-body">
-                <textarea type="text" class="form-control" v-model="modalValue" placeholder="...."/>
+                <textarea id="modal-emojiarea"></textarea>
+                <!-- <textarea type="text" class="form-control" v-model="modalValue" placeholder="...."/> -->
                 </div>
 
               <!-- 模态框底部 -->
@@ -159,6 +160,10 @@ import _ from 'lodash'
 import Loading from '@c/Loading'
 import { mapState } from 'vuex'
 import { postComments, getCommentsByArticleId } from '@api/api'
+import 'emojionearea'
+import 'jquery-textcomplete'
+
+window.emojioneVersion = '4.0'
 
 export default {
   components: { BlogSiderbar, Loading },
@@ -204,6 +209,36 @@ export default {
 
   mounted () {
     this.fetchComments()
+    let vm = this
+    this.$nextTick(() => {
+      let emoji = $('#emojiarea').emojioneArea({
+        buttonTitle: '使用 tab 快速打开表情',
+        pickerPosition: 'bottom',
+        searchPlaceholder: '快速搜索表情',
+        placeholder: '你的评论...',
+        tonesStyle: 'bullet',
+        saveEmojisAs: 'image',
+        useInternalCDN: true
+      })
+
+      emoji[0].emojioneArea.on('keyup', function (btn, event) {
+        vm.postContent = $('#emojiarea').data('emojioneArea').getText()
+      })
+
+      let modalEmoji = $('#modal-emojiarea').emojioneArea({
+        buttonTitle: '使用 tab 快速打开表情',
+        pickerPosition: 'bottom',
+        searchPlaceholder: '快速搜索表情',
+        placeholder: '你的回复...',
+        tonesStyle: 'bullet',
+        saveEmojisAs: 'image',
+        useInternalCDN: true
+      })
+
+      modalEmoji[0].emojioneArea.on('keyup', function (btn, event) {
+        vm.modalValue = $('#modal-emojiarea').data('emojioneArea').getText()
+      })
+    })
   },
 
   methods: {
@@ -218,17 +253,28 @@ export default {
     },
 
     async postComment () {
+      if (!this.postContent) {
+        window.toastr.warning('评论内容不能为空')
+        return
+      }
+
       const data = await postComments({
         articleId: this.currentArticle.id,
         postContent: this.postContent
       })
 
       this.postContent = ''
+      $('#emojiarea').data('emojioneArea').setText('')
       window.toastr.info('提交成功')
       this.comments.unshift(data.data)
     },
 
     async doReply () {
+      if (!this.modalValue) {
+        window.toastr.warning('回复内容不能为空')
+        return
+      }
+
       const data = await postComments({
         articleId: this.currentArticle.id,
         postContent: this.modalValue,
@@ -236,6 +282,7 @@ export default {
       })
 
       this.modalValue = ''
+      $('#modal-emojiarea').data('emojioneArea').setText('')
       window.toastr.success('回复成功')
       this.comments[this.replyIndex]['replies'].push(data.data)
     },
@@ -259,9 +306,7 @@ export default {
 </script>
 
 <style lang="scss" socped>
-/*********************************
-6. Post Content
-*********************************/
+@import '~emojionearea/dist/emojionearea.css';
 
 .page_content {
   background: #f7f7f7;
@@ -672,5 +717,4 @@ export default {
 .comment ul li {
   border-top: solid 1px #e5e5e5;
 }
-
 </style>

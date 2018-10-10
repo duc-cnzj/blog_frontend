@@ -15,9 +15,9 @@
       <router-view name="home"></router-view>
 
       <!-- Page Content -->
-      <transition name="fade" enter-active-class="animated tada">
+      <!-- <transition name="fade" enter-active-class="animated tada"> -->
         <router-view name="content"></router-view>
-      </transition>
+      <!-- </transition> -->
 
       <!-- footer -->
       <blog-footer />
