@@ -57,25 +57,41 @@
                       <div class="comments_container">
                         <ul class="comment_list">
 
-                          <template v-for="comment in visableComments">
+                          <template v-for="(comment, index) in visableComments">
                             <li class="comment animated zoomIn" :key="comment.id">
                               <div class="comment_body">
                                 <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
                                   <div class="comment_author_image">
-                                    <div><img :src="comment.author.avatar" alt=""></div>
+                                    <div><img src="images/comment_author_1.jpg" alt=""></div>
                                     </div>
                                     <small class="post_meta">
-                                      <router-link :to="'/author/'+comment.author.id">
+                                      <!-- <router-link :to="'/author/'+comment.author.id"> -->
                                         {{comment.author.name}}
-                                      </router-link>
+                                      <!-- </router-link> -->
                                       <span>{{comment.created_at}}</span>
                                     </small>
-                                    <button type="button" class="reply_button ml-auto" data-toggle="modal" data-target="#myModal" @click="reply(comment)">回复 Ta</button>
+                                    <button type="button" class="reply_button ml-auto" data-toggle="modal" data-target="#myModal" @click="reply(comment, index)">回复 Ta</button>
                                   </div>
                                   <div class="comment_content">
-                                    <p v-highlight>{{comment.body}}</p>
+                                    <p v-html="comment.body" v-highlight></p>
                                   </div>
-                                </div>
+                                  </div>
+
+                                 <!-- Reply -->
+                                <ul class="comment_list">
+
+                                  <li class="comment" v-for="reply in comment.replies" :key="reply.id">
+                                    <div class="comment_body">
+                                      <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
+                                        <div class="comment_author_image"><div><img src="images/comment_author_2.jpg" alt=""></div></div>
+                                        <small class="post_meta"><a href="#">{{reply.author.name}}</a><span>{{reply.created_at}}</span></small>
+                                      </div>
+                                      <div class="comment_content">
+                                        <p v-html="reply.body" v-highlight></p>
+                                      </div>
+                                    </div>
+                                  </li>
+                                </ul>
                             </li>
                           </template>
 
@@ -87,7 +103,10 @@
               </div>
             </div>
             <div class="load_more" @click="loadMoreComments" v-if="showLoadMoreBar">
-              <div id="load_more" class="load_more_button text-center trans_200">Load More</div>
+              <div id="load_more" class="load_more_button text-center trans_200">加载更多评论</div>
+            </div>
+            <div class="load_more" @click="fold" v-if="loadData">
+              <div id="load_more" class="load_more_button text-center trans_200">折叠</div>
             </div>
 
             <div v-if="loading">
@@ -125,7 +144,6 @@
               <!-- 模态框底部 -->
               <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal" @click="doReply">回复</button>
-                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button> -->
               </div>
 
             </div>
@@ -154,6 +172,7 @@ export default {
       modalValue: '',
       postContent: '',
       replyComment: {},
+      replyIndex: '',
       comments: []
     }
   },
@@ -188,6 +207,11 @@ export default {
   },
 
   methods: {
+    fold () {
+      this.loading = false
+      this.loadMore = false
+      this.loadData = false
+    },
     async fetchComments () {
       const comments = await getCommentsByArticleId(this.$route.params.id)
       this.comments = comments.data
@@ -204,8 +228,8 @@ export default {
       this.comments.unshift(data.data)
     },
 
-    doReply () {
-      postComments({
+    async doReply () {
+      const data = await postComments({
         articleId: this.currentArticle.id,
         postContent: this.modalValue,
         commentId: this.replyComment.id
@@ -213,10 +237,12 @@ export default {
 
       this.modalValue = ''
       window.toastr.success('回复成功')
+      this.comments[this.replyIndex]['replies'].push(data.data)
     },
 
-    reply (comment) {
+    reply (comment, index) {
       this.replyComment = comment
+      this.replyIndex = index
     },
 
     loadMoreComments () {
