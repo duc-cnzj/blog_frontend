@@ -50,14 +50,14 @@
                 </div>
 
                 <!-- Comments -->
-                <div class="comments" v-if="comments.length > 0">
-                  <div class="comments_title">评论列表 <span>(12)</span></div>
+                <div class="comments" v-if="visableComments.length > 0">
+                  <div class="comments_title">评论列表 <span>({{comments.length}})</span></div>
                   <div class="row">
                     <div class="col-xl-8">
                       <div class="comments_container">
                         <ul class="comment_list">
 
-                          <template v-for="comment in comments">
+                          <template v-for="comment in visableComments">
                             <li class="comment animated zoomIn" :key="comment.id">
                               <div class="comment_body">
                                 <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
@@ -137,10 +137,10 @@
 
 <script>
 import BlogSiderbar from '@views/BlogSiderbar'
-import Loading from '@c/Loading'
 import _ from 'lodash'
-import { postComments } from '@api/api'
+import Loading from '@c/Loading'
 import { mapState } from 'vuex'
+import { postComments, getCommentsByArticleId } from '@api/api'
 
 export default {
   components: { BlogSiderbar, Loading },
@@ -153,31 +153,46 @@ export default {
       loadData: false,
       modalValue: '',
       postContent: '',
-      replyComment: {}
+      replyComment: {},
+      comments: []
     }
   },
 
   computed: {
     ...mapState({ currentArticle: 'currentArticle' }),
 
-    comments () {
+    visableComments () {
       if (this.loadData) {
-        return this.currentArticle.comments
+        return this.comments
       }
 
-      return _.take(this.currentArticle.comments, this.commentNum)
+      return _.take(this.comments, this.commentNum)
     },
 
     showLoadMoreBar () {
-      if (this.currentArticle.comments === undefined) {
+      if (this.comments === undefined) {
         return false
       }
-      return !this.loadMore && this.currentArticle.comments.length > this.commentNum
+      return !this.loadMore && this.comments.length > this.commentNum
     }
+  },
 
+  watch: {
+    '$route': function () {
+      this.fetchComments()
+    }
+  },
+
+  mounted () {
+    this.fetchComments()
   },
 
   methods: {
+    async fetchComments () {
+      const comments = await getCommentsByArticleId(this.$route.params.id)
+      this.comments = comments.data
+    },
+
     async postComment () {
       const data = await postComments({
         articleId: this.currentArticle.id,
@@ -186,7 +201,7 @@ export default {
 
       this.postContent = ''
       window.toastr.info('提交成功')
-      this.currentArticle.comments.unshift(data.data)
+      this.comments.unshift(data.data)
     },
 
     doReply () {
@@ -211,7 +226,7 @@ export default {
       setTimeout(() => {
         this.loading = false
         this.loadData = true
-      }, 1500)
+      }, 500)
     }
   }
 }

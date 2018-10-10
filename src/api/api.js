@@ -13,6 +13,8 @@ export const getTrendingArticles = () => ajax(`${BASE_URL}/trending_articles`)
 // export const getTrendingArticles = () => ajax(`api/trending_articles.json`)
 export const getArticleBy = (id) => ajax(`${BASE_URL}/articles/${id}`)
 
+export const getCommentsByArticleId = (id) => ajax(`${BASE_URL}/articles/${id}/comments`)
+
 export const postComments = ({ articleId, postContent, commentId = 0 }) => ajax(`${BASE_URL}/articles/${articleId}/comments`, {
   content: postContent,
   comment_id: commentId
