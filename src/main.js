@@ -15,6 +15,8 @@ import DucHighlight from './directives/Highlight'
 Vue.use(Focus)
 Vue.use(DucHighlight)
 
+console.log(process.env.VUE_APP_URL)
+
 toastr.options = toastrConfig
 
 window.toastr = toastr
