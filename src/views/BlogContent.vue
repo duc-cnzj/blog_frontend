@@ -106,11 +106,11 @@
                 </div>
                 <div v-if="popularArticles[2] !== undefined">
                   <!-- Small Card With Image -->
-                  <small-card-with-image :image="popularArticles[2].headImage" :path="'/articles/'+popularArticles[3].id" :title="popularArticles[3].title" :author="popularArticles[3].author.name" :author_url="'/authors/'+popularArticles[3].author.id" :created_at="popularArticles[3].created_at" :desc="popularArticles[3].desc" />
+                  <small-card-with-image :image="popularArticles[2].headImage" :path="'/articles/'+popularArticles[2].id" :title="popularArticles[2].title" :author="popularArticles[2].author.name" :author_url="'/authors/'+popularArticles[2].author.id" :created_at="popularArticles[2].created_at" :desc="popularArticles[2].desc" />
                 </div>
                 <div v-if="popularArticles[3] !== undefined">
                   <!-- SmallCardWithBackground -->
-                  <small-card-with-background :image="popularArticles[4].headImage" :path="'/articles/'+popularArticles[4].id" :title="popularArticles[4].title" :author="popularArticles[4].author.name" :author_url="'/authors/'+popularArticles[4].author.id" :created_at="popularArticles[4].created_at" :desc="popularArticles[4].desc" />
+                  <small-card-with-background :image="popularArticles[3].headImage" :path="'/articles/'+popularArticles[3].id" :title="popularArticles[3].title" :author="popularArticles[3].author.name" :author_url="'/authors/'+popularArticles[3].author.id" :created_at="popularArticles[3].created_at" :desc="popularArticles[3].desc" />
                 </div>
                 <div v-if="popularArticles[4] !== undefined">
                   <!-- SmallCardWithBackground -->
@@ -118,7 +118,7 @@
                 </div>
                 <div v-if="popularArticles[5] !== undefined">
                   <!-- Small Card With Image -->
-                  <small-card-with-image :image="popularArticles[5].headImage" :path="'/articles/'+popularArticles[6].id" :title="popularArticles[6].title" :author="popularArticles[6].author.name" :author_url="'/authors/'+popularArticles[6].author.id" :created_at="popularArticles[6].created_at" :desc="popularArticles[6].desc" />
+                  <small-card-with-image :image="popularArticles[5].headImage" :path="'/articles/'+popularArticles[5].id" :title="popularArticles[5].title" :author="popularArticles[5].author.name" :author_url="'/authors/'+popularArticles[5].author.id" :created_at="popularArticles[5].created_at" :desc="popularArticles[5].desc" />
                 </div>
                 <div v-if="popularArticles[6] !== undefined">
                   <!-- SmallCardWithoutImage -->

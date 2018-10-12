@@ -3,19 +3,23 @@
     <div class="container">
       <div class="row row-lg-eq-height">
         <div class="col-lg-9 offset-lg-1">
-          <div class="post_content">
+          <div class="post_content" v-if="chunkCategories.length > 0">
 
-            <template v-for="(c, index) in chunkCategories">
+              <template v-for="(c, index) in chunkCategories">
 
-              <!-- Similar Posts -->
-              <div class="similar_posts card-deck" v-if="categories !== undefined" :key="index">
-                <template v-for="i in c">
-                  <category-card :title="i.name" :path="'da'" :key="i.id" />
-                </template>
-              </div>
-            </template>
-            <hr>
-                        </div>
+                <!-- Similar Posts -->
+                <div class="similar_posts card-deck" v-if="categories !== undefined" :key="index">
+                  <template v-for="i in c">
+                    <category-card :title="i.name" :path="'da'" :key="i.id" />
+                  </template>
+                </div>
+              </template>
+              <hr>
+            </div>
+
+            <div class="post_content" v-else>
+                <loading />
+            </div>
           </div>
         </div>
       </div>
@@ -25,11 +29,12 @@
 
 <script>
 import CategoryCard from '@c/CategoryCard'
+import Loading from '@c/Loading'
 import { mapActions, mapState } from 'vuex'
 import _ from 'lodash'
 
 export default {
-  components: { CategoryCard },
+  components: { CategoryCard, Loading },
   mounted () {
     this.fetchCategories()
   },

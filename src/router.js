@@ -31,6 +31,7 @@ export default new Router({
     },
     {
       path: '/articles/:id',
+      name: 'showarticle',
       components: {
         home: PostHome,
         content: PostContent

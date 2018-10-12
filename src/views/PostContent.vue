@@ -1,107 +1,113 @@
 <template>
   <div class="page_content">
-    <div class="container">
+    <div class="container"  >
       <div class="row row-lg-eq-height">
-        <div class="col-lg-9">
-          <div class="post_content">
+        <div class="col-lg-9" v-show="currentArticle.id !== undefined">
+            <div class="post_content">
 
-            <!-- Top Panel -->
-            <div class="post_panel post_panel_top d-flex flex-row align-items-center justify-content-start" v-if="currentArticle.id !== undefined">
-              <div class="author_image">
-                <div><img :src="currentArticle.author.avatar" alt=""></div>
+              <!-- Top Panel -->
+                <div class="post_panel post_panel_top d-flex flex-row align-items-center justify-content-start" v-if="currentArticle.id !== undefined">
+
+                  <div class="author_image">
+                    <div><img :src="currentArticle.author.avatar" alt=""></div>
+                  </div>
+
+                  <div class="post_meta">
+                    <router-link :to="'/authors/'+currentArticle.author.id">
+                      {{currentArticle.author.name}}
+                    </router-link>
+                    <span>{{currentArticle.created_at}}</span>
+                  </div>
+
                 </div>
-                <div class="post_meta">
-                  <router-link :to="'/authors/'+currentArticle.author.id">
-                    {{currentArticle.author.name}}
-                  </router-link>
-                  <span>{{currentArticle.created_at}}</span>
+
+                <!-- Post Body -->
+
+                <div class="post_body">
+                  <p v-html="currentArticle.content" v-highlight></p>
+
+                  <!-- Post Tags -->
+                  <div class="post_tags">
+                    <ul>
+                      <li class="post_tag" v-for="tag in currentArticle.tags" :key="tag.id">
+                        <router-link :to="'/tags/'+tag.id">{{tag.name}}</router-link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
 
-              <!-- Post Body -->
+                <!-- Similar Posts -->
+                <div class="similar_posts">
 
-              <div class="post_body">
-                <p v-html="currentArticle.content" v-highlight></p>
+                  <!-- Post Comment -->
+                  <div class="post_comment">
+                    <div class="post_comment_title">发表评论</div>
+                    <div class="row">
+                      <div class="col-xl-8">
+                        <div class="post_comment_form_container">
+                          <textarea id="emojiarea"></textarea>
+                          <button type="submit" class="comment_button" @click.prevent="postComment">提交</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                <!-- Post Tags -->
-                <div class="post_tags">
-                  <ul>
-                    <li class="post_tag" v-for="tag in currentArticle.tags" :key="tag.id">
-                      <router-link :to="'/tags/'+tag.id">{{tag.name}}</router-link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+                  <!-- Comments -->
+                  <div class="comments" v-if="visableComments.length > 0">
+                    <div class="comments_title">评论列表</div>
+                    <div class="row">
+                      <div class="col-xl-8">
+                        <div class="comments_container">
+                          <ul class="comment_list">
 
-              <!-- Similar Posts -->
-              <div class="similar_posts">
+                            <template v-for="(comment, index) in visableComments">
+                              <li class="comment animated zoomIn" :key="comment.id">
+                                <div class="comment_body">
+                                    <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
 
-                <!-- Post Comment -->
-                <div class="post_comment">
-                  <div class="post_comment_title">发表评论</div>
-                  <div class="row">
-                    <div class="col-xl-8">
-                      <div class="post_comment_form_container">
-                        <textarea id="emojiarea"></textarea>
-                        <button type="submit" class="comment_button" @click.prevent="postComment">提交</button>
+                                        <div class="comment_author_image">
+                                          <div><img src="images/comment_author_1.jpg" alt=""></div>
+                                        </div>
+
+                                        <small class="post_meta">
+                                          <!-- <router-link :to="'/author/'+comment.author.id"> -->
+                                            {{comment.author.name}}
+                                          <!-- </router-link> -->
+                                          <span>{{comment.created_at}}</span>
+                                        </small>
+                                        <button type="button" class="reply_button ml-auto" data-toggle="modal" data-target="#myModal" @click="reply(comment, index)">回复 Ta</button>
+                                    </div>
+                                    <div class="comment_content">
+                                      <p v-html="comment.body" v-highlight></p>
+                                    </div>
+                                </div>
+
+                                  <!-- Reply -->
+                                  <ul class="comment_list">
+
+                                    <li class="comment" v-for="reply in comment.replies" :key="reply.id">
+                                      <div class="comment_body">
+                                        <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
+                                          <div class="comment_author_image"><div><img src="images/comment_author_2.jpg" alt=""></div></div>
+                                          <small class="post_meta"><a href="#">{{reply.author.name}}</a><span>{{reply.created_at}}</span></small>
+                                        </div>
+                                        <div class="comment_content">
+                                          <p v-html="reply.body" v-highlight></p>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  </ul>
+                              </li>
+                            </template>
+
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <!-- Comments -->
-                <div class="comments" v-if="visableComments.length > 0">
-                  <div class="comments_title">评论列表</div>
-                  <div class="row">
-                    <div class="col-xl-8">
-                      <div class="comments_container">
-                        <ul class="comment_list">
-
-                          <template v-for="(comment, index) in visableComments">
-                            <li class="comment animated zoomIn" :key="comment.id">
-                              <div class="comment_body">
-                                <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
-                                  <div class="comment_author_image">
-                                    <div><img src="images/comment_author_1.jpg" alt=""></div>
-                                    </div>
-                                    <small class="post_meta">
-                                      <!-- <router-link :to="'/author/'+comment.author.id"> -->
-                                        {{comment.author.name}}
-                                      <!-- </router-link> -->
-                                      <span>{{comment.created_at}}</span>
-                                    </small>
-                                    <button type="button" class="reply_button ml-auto" data-toggle="modal" data-target="#myModal" @click="reply(comment, index)">回复 Ta</button>
-                                  </div>
-                                  <div class="comment_content">
-                                    <p v-html="comment.body" v-highlight></p>
-                                  </div>
-                                  </div>
-
-                                 <!-- Reply -->
-                                <ul class="comment_list">
-
-                                  <li class="comment" v-for="reply in comment.replies" :key="reply.id">
-                                    <div class="comment_body">
-                                      <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
-                                        <div class="comment_author_image"><div><img src="images/comment_author_2.jpg" alt=""></div></div>
-                                        <small class="post_meta"><a href="#">{{reply.author.name}}</a><span>{{reply.created_at}}</span></small>
-                                      </div>
-                                      <div class="comment_content">
-                                        <p v-html="reply.body" v-highlight></p>
-                                      </div>
-                                    </div>
-                                  </li>
-                                </ul>
-                            </li>
-                          </template>
-
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
+
             <div class="load_more" @click="loadMoreComments" v-if="showLoadMoreBar">
               <div id="load_more" class="load_more_button text-center trans_200">加载更多评论</div>
             </div>
@@ -109,19 +115,19 @@
               <div id="load_more" class="load_more_button text-center trans_200">折叠</div>
             </div>
 
-            <div v-if="loading">
-              <loading />
-            </div>
-
             <hr />
 
           </div>
-            <!-- Sidebar -->
-            <div class="col-lg-3">
-              <blog-siderbar />
-            </div>
 
+          <div class="col-lg-9 duc-loading" v-if="currentArticle.id === undefined">
+            <loading />
           </div>
+
+          <!-- Sidebar -->
+          <div class="col-lg-3" v-if="currentArticle.id !== undefined">
+            <blog-siderbar />
+          </div>
+
         </div>
 
         <!-- 模态框 -->
@@ -150,6 +156,9 @@
             </div>
           </div>
         </div>
+
+        </div>
+
       </div>
 
 </template>
@@ -716,5 +725,9 @@ export default {
 }
 .comment ul li {
   border-top: solid 1px #e5e5e5;
+}
+
+.duc-loading {
+  // height: 20vh;
 }
 </style>

@@ -1,16 +1,19 @@
 import axios from 'axios'
-// import router from '../router'
 axios.defaults.headers.common['accept'] = 'application/json'
 
 export default function ajax (url, data = {}, type = 'get') {
-  // console.log(data)
-
   return new Promise((resolve, reject) => {
     axios[type](url, data)
       .then(function (response) {
         resolve(response.data)
       })
-      .catch(function ({ response }) {
+      .catch(function (error) {
+        console.log(error.message)
+
+        if (error.message === 'Network Error' && window.toastrError === false) {
+          window.toastr.error('请检查网络是否通畅')
+          window.toastrError = true
+        }
         // let { status } = response
         // let currentPath = router.currentRoute.path
         // switch (status) {
@@ -28,7 +31,7 @@ export default function ajax (url, data = {}, type = 'get') {
         //     break
         // }
 
-        reject(response)
+        reject(error)
       })
   })
 }

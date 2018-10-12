@@ -3,30 +3,19 @@
         <div class="container">
             <div class="row row-lg-eq-height">
                 <div class="col-lg-9 offset-lg-1">
-                    <div class="section_content">
+                    <div class="section_content"  v-if="articles.length > 0">
 
                         <div class="card-deck-wrapper duc">
-                            <div class="card-deck">
-                                <small-card-with-image image="images/post_1.jpg" path="'/articles/'+popularArticles[0].id" title="popularArticles[0].title" author="popularArticles[0].author.name" author_url="'/authors/'+popularArticles[0].author.id" created_at="popularArticles[0].created_at" desc="popularArticles[0].desc" />
-                                <small-card-with-image image="images/post_1.jpg" path="'/articles/'+popularArticles[0].id" title="popularArticles[0].title" author="popularArticles[0].author.name" author_url="'/authors/'+popularArticles[0].author.id" created_at="popularArticles[0].created_at" desc="popularArticles[0].desc" />
-                                <small-card-with-image image="images/post_1.jpg" path="'/articles/'+popularArticles[0].id" title="popularArticles[0].title" author="popularArticles[0].author.name" author_url="'/authors/'+popularArticles[0].author.id" created_at="popularArticles[0].created_at" desc="popularArticles[0].desc" />
-
-                            </div>
-                            <div class="card-deck">
-                                <small-card-with-image image="images/post_1.jpg" path="'/articles/'+popularArticles[0].id" title="popularArticles[0].title" author="popularArticles[0].author.name" author_url="'/authors/'+popularArticles[0].author.id" created_at="popularArticles[0].created_at" desc="popularArticles[0].desc" />
-                                <small-card-with-image image="images/post_1.jpg" path="'/articles/'+popularArticles[0].id" title="popularArticles[0].title" author="popularArticles[0].author.name" author_url="'/authors/'+popularArticles[0].author.id" created_at="popularArticles[0].created_at" desc="popularArticles[0].desc" />
-                                <small-card-with-image image="images/post_1.jpg" path="'/articles/'+popularArticles[0].id" title="popularArticles[0].title" author="popularArticles[0].author.name" author_url="'/authors/'+popularArticles[0].author.id" created_at="popularArticles[0].created_at" desc="popularArticles[0].desc" />
-                            </div>
-                            <div class="card-deck">
-                                <small-card-with-image image="images/post_1.jpg" path="'/articles/'+popularArticles[0].id" title="popularArticles[0].title" author="popularArticles[0].author.name" author_url="'/authors/'+popularArticles[0].author.id" created_at="popularArticles[0].created_at" desc="popularArticles[0].desc" />
-                                <small-card-with-image image="images/post_1.jpg" path="'/articles/'+popularArticles[0].id" title="popularArticles[0].title" author="popularArticles[0].author.name" author_url="'/authors/'+popularArticles[0].author.id" created_at="popularArticles[0].created_at" desc="popularArticles[0].desc" />
-                                <small-card-with-image image="images/post_1.jpg" path="'/articles/'+popularArticles[0].id" title="popularArticles[0].title" author="popularArticles[0].author.name" author_url="'/authors/'+popularArticles[0].author.id" created_at="popularArticles[0].created_at" desc="popularArticles[0].desc" />
-
+                            <div class="card-deck" v-for="item in articles" :key="item.id">
+                                <largest-card-with-image :image="item.headImage" :path="'/articles/'+item.id" :title="item.title" :author="item.author.name" :author_url="'/authors/'+item.author.id" :created_at="item.created_at" :desc="item.desc" />
                             </div>
                         </div>
 
-                        <paginator />
+                        <paginator :dataSet="dataSet" @changed="changed" />
                         <hr />
+                    </div>
+                    <div class="section_content" v-else>
+                        <loading />
                     </div>
                     </div>
                 </div>
@@ -35,12 +24,37 @@
 </template>
 
 <script>
-import SmallCardWithImage from '@c/SmallCardWithImage'
+import LargestCardWithImage from '@c/LargestCardWithImage'
+import Loading from '@c/Loading'
 import Paginator from '@c/Paginator'
+import { getArticles } from '@api/api'
 
 export default {
   components: {
-    SmallCardWithImage, Paginator
+    LargestCardWithImage, Paginator, Loading
+  },
+
+  data () {
+    return {
+      articles: [],
+      dataSet: {}
+    }
+  },
+
+  created () {
+    this.fetchArticles()
+  },
+
+  methods: {
+    changed (page) {
+      this.fetchArticles(page)
+    },
+
+    async fetchArticles (page) {
+      const articles = await getArticles(page)
+      this.articles = articles.data
+      this.dataSet = Object.assign(articles.links, articles.meta)
+    }
   }
 }
 </script>

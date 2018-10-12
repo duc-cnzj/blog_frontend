@@ -1,3 +1,3 @@
 <template>
-    <div>页面不见了</div>
+    <h1>作者偷懒，页面没写</h1>
 </template>
