@@ -111,6 +111,9 @@
             <div class="load_more" @click="loadMoreComments" v-if="showLoadMoreBar">
               <div id="load_more" class="load_more_button text-center trans_200">加载更多评论</div>
             </div>
+             <div v-if="loading">
+              <loading />
+            </div>
             <div class="load_more" @click="fold" v-if="loadData">
               <div id="load_more" class="load_more_button text-center trans_200">折叠</div>
             </div>
@@ -211,7 +214,10 @@ export default {
   },
 
   watch: {
-    '$route': function () {
+    '$route': function (to, from) {
+      this.loadMore = false
+      this.loading = false
+      this.loadData = false
       this.fetchComments()
     }
   },

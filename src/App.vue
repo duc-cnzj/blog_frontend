@@ -16,7 +16,9 @@
 
       <!-- Page Content -->
       <!-- <transition name="fade" enter-active-class="animated tada"> -->
+      <!-- <keep-alive> -->
         <router-view name="content"></router-view>
+      <!-- </keep-alive> -->
       <!-- </transition> -->
 
       <!-- footer -->

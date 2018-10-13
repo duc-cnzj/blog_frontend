@@ -18,8 +18,8 @@ export default {
   data () {
     return {
       page: 1,
-      prevUrl: true,
-      nextUrl: true
+      prevUrl: '',
+      nextUrl: ''
     }
   },
 
@@ -33,6 +33,12 @@ export default {
     page () {
       this.broadcast().updateUrl()
     }
+  },
+
+  created () {
+    this.page = this.dataSet.current_page
+    this.prevUrl = this.dataSet.prev
+    this.nextUrl = this.dataSet.next
   },
 
   computed: {

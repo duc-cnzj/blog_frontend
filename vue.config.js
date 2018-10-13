@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
+  outputDir: '/Users/congcong/Lumen/lumen-app/run/front',
   configureWebpack: {
     plugins: [
       new webpack.ProvidePlugin({
