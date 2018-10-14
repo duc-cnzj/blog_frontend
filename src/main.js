@@ -22,6 +22,12 @@ window.toastrError = false
 
 Vue.config.productionTip = false
 
+window.events = new Vue()
+
+window.search = function (value) {
+  window.events.$emit('search', value)
+}
+
 new Vue({
   router,
   store,

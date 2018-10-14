@@ -1,6 +1,8 @@
 <template>
     <div class="card card_small_with_image">
-        <img class="card-img-top" :src="image" alt="">
+        <router-link :to="path">
+            <img class="card-img-top" :src="image" alt="">
+        </router-link>
         <div class="card-body">
             <div class="card-title card-title-small">
                 <router-link :to="path">{{title}}</router-link>

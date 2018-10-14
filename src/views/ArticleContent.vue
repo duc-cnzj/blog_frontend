@@ -1,33 +1,43 @@
 <template>
-    <div class="page_content">
-        <div class="container">
-            <div class="row row-lg-eq-height">
-                <div class="col-lg-9 offset-lg-1">
-                    <div class="section_content"  v-if="articles.length > 0">
+  <div class="page_content">
+    <div class="container">
+      <div class="row row-lg-eq-height">
+        <div class="col-lg-9 offset-lg-1">
+          <div class="section_content" v-if="articles !== null && articles.length !== 0">
 
-                        <div class="card-deck-wrapper duc">
-                            <div class="card-deck" v-for="item in articles" :key="item.id">
-                                <largest-card-with-image :image="item.headImage" :path="'/articles/'+item.id" :title="item.title" :author="item.author.name" :author_url="'/authors/'+item.author.id" :created_at="item.created_at" :desc="item.desc" />
-                            </div>
-                        </div>
-
-                        <paginator :dataSet="dataSet" @changed="changed" />
-                        <hr />
-                    </div>
-                    <div class="section_content" v-else>
-                        <loading />
-                    </div>
-                    </div>
-                </div>
+            <div class="card-deck-wrapper duc">
+              <div class="card-deck" v-for="item in articles" :key="item.id">
+                <largest-card-with-image :image="item.headImage" :content="getHighlightContent(item)" :path="'/articles/'+item.id" :title="getHighlight(item, 'title')" :author="item.author.name" :author_url="'/authors/'+item.author.id" :created_at="item.created_at" :desc="getHighlight(item, 'desc')" />
+              </div>
             </div>
+
+            <div v-if="showPaginate">
+              <paginator :dataSet="dataSet" @changed="changed" />
+            </div>
+            <hr />
+          </div>
+
+          <div class="section_content" v-else-if="articles === null">
+            <loading />
+          </div>
+
+          <div class="section_content" v-else>
+            <h1>未搜索到数据</h1>
+            <hr />
+          </div>
+
         </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import LargestCardWithImage from '@c/LargestCardWithImage'
 import Loading from '@c/Loading'
 import Paginator from '@c/Paginator'
-import { getArticles } from '@api/api'
+import _ from 'lodash'
+import { getArticles, elasticSearch } from '@api/api'
 
 export default {
   components: {
@@ -36,16 +46,52 @@ export default {
 
   data () {
     return {
-      articles: [],
-      dataSet: {}
+      articles: null,
+      dataSet: {},
+      showPaginate: true
     }
   },
 
   created () {
+    this.searchListen()
     this.fetchArticles()
   },
 
   methods: {
+    getHighlight (item, field, array = false) {
+      if (item === []) {
+        return
+      }
+
+      if (array) {
+        return item.highlight !== undefined && item.highlight[field] !== null ? item.highlight[field] : _.map(item.row[field], 'name').join(',')
+      }
+
+      return item.highlight !== undefined && item.highlight[field] !== null ? item.highlight[field] : item[field]
+    },
+
+    getHighlightContent (item) {
+      if (item === []) {
+        return
+      }
+
+      return item.highlight !== undefined && item.highlight['content'] !== null ? item.highlight['content'] : null
+    },
+
+    searchListen () {
+      window.events.$on('search', (value) => {
+        if (value) {
+          elasticSearch(value).then(({ data }) => {
+            this.articles = data
+            this.showPaginate = false
+          })
+        } else {
+          this.fetchArticles()
+          this.showPaginate = true
+        }
+      })
+    },
+
     changed (page) {
       this.fetchArticles(page)
     },

@@ -15,5 +15,9 @@ export default {
 
   [types.WELCOME] (state) {
     state.welcome = true
+  },
+
+  [types.SET_SEARCH] (state, { search }) {
+    state.search = search
   }
 }

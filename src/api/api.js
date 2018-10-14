@@ -10,21 +10,29 @@ export const getCategories = () => ajax(`${BASE_URL}/categories`)
 
 export const getNewestArticles = () => ajax(`${BASE_URL}/newest_articles`)
 
-export const getArticles = (page = 1) => ajax(`${BASE_URL}/articles`, {
-  params: {
-    page
-  }
-})
+export const getArticles = (page = 1) =>
+  ajax(`${BASE_URL}/articles`, {
+    params: {
+      page
+    }
+  })
 
 export const getPopularArticles = () => ajax(`${BASE_URL}/popular_articles`)
 
 export const getTrendingArticles = () => ajax(`${BASE_URL}/trending_articles`)
 
-export const getArticleBy = (id) => ajax(`${BASE_URL}/articles/${id}`)
+export const getArticleBy = id => ajax(`${BASE_URL}/articles/${id}`)
 
-export const getCommentsByArticleId = (id) => ajax(`${BASE_URL}/articles/${id}/comments`)
+export const elasticSearch = query => ajax(`${BASE_URL}/search_articles?q=${query}`)
 
-export const postComments = ({ articleId, postContent, commentId = 0 }) => ajax(`${BASE_URL}/articles/${articleId}/comments`, {
-  content: postContent,
-  comment_id: commentId
-}, 'post')
+export const getCommentsByArticleId = id => ajax(`${BASE_URL}/articles/${id}/comments`)
+
+export const postComments = ({ articleId, postContent, commentId = 0 }) =>
+  ajax(
+    `${BASE_URL}/articles/${articleId}/comments`,
+    {
+      content: postContent,
+      comment_id: commentId
+    },
+    'post'
+  )
