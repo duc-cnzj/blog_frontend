@@ -97,7 +97,9 @@ export default {
   },
 
   created () {
-    this.fetchHomeArticles()
+    this.fetchHomeArticles().then(res => {
+      this.init()
+    })
   },
 
   mounted () {
@@ -198,7 +200,6 @@ export default {
     async fetchHomeArticles () {
       const articles = await getHomeArticles()
       this.articles = articles.data
-      this.init()
     },
 
     getImage (path) {

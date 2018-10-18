@@ -56,14 +56,6 @@
           </div>
         </div>
       </div>
-
-      <!-- <div class="owl-stage-outer">
-        <div class="owl-stage">
-          <div class=" duc">...</div>
-          <div class=" duc">...</div>
-          <div class=" duc">...</div>
-        </div>
-      </div> -->
     </div>
 
   </div>
@@ -74,15 +66,16 @@
 import _ from 'lodash'
 import { mapState, mapActions } from 'vuex'
 import SidebarLoading from '@c/SidebarLoading'
+import custom from '@assets/custom.js'
 
 export default {
   components: { SidebarLoading },
 
   created () {
-    setTimeout(() => {
+    this.fecthTrendingArticles().then(res => {
       this.init()
-      this.fecthTrendingArticles()
-    }, 300)
+      custom()
+    })
   },
 
   data () {
@@ -95,7 +88,6 @@ export default {
     ...mapState(['trendingArticles']),
 
     groupArticles () {
-      // return this.trendingArticles
       return _.chunk(this.trendingArticles, this.chunkSize)
     }
   },

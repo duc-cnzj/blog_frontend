@@ -42,31 +42,31 @@
                   </div>
                   <div class="col-sm-4">
                     <div v-if="newestArticles[1] !== undefined">
-                      <small-card-with-background :image="newestArticles[1].headImage" :path="'/articles/'+newestArticles[1].id" :title="newestArticles[1].title" :author="newestArticles[1].author.name" :author_url="'/authors/'+newestArticles[1].author.id" :created_at="newestArticles[1].created_at" :desc="newestArticles[1].desc" />
+                      <small-card-with-image :image="newestArticles[1].headImage" :path="'/articles/'+newestArticles[1].id" :title="newestArticles[1].title" :author="newestArticles[1].author.name" :author_url="'/authors/'+newestArticles[1].author.id" :created_at="newestArticles[1].created_at" :desc="newestArticles[1].desc" />
                     </div>
                     <div v-if="newestArticles[2] !== undefined">
-                      <default-card-no-image :image="newestArticles[2].headImage" :path="'/articles/'+newestArticles[2].id" :title="newestArticles[2].title" :author="newestArticles[2].author.name" :author_url="'/authors/'+newestArticles[2].author.id" :created_at="newestArticles[2].created_at" :desc="newestArticles[2].desc" />
+                      <small-card-with-background :image="newestArticles[2].headImage" :path="'/articles/'+newestArticles[2].id" :title="newestArticles[2].title" :author="newestArticles[2].author.name" :author_url="'/authors/'+newestArticles[2].author.id" :created_at="newestArticles[2].created_at" :desc="newestArticles[2].desc" />
+                    </div>
+                    <div v-if="newestArticles[3] !== undefined">
+                      <default-card-no-image :image="newestArticles[3].headImage" :path="'/articles/'+newestArticles[3].id" :title="newestArticles[3].title" :author="newestArticles[3].author.name" :author_url="'/authors/'+newestArticles[3].author.id" :created_at="newestArticles[3].created_at" :desc="newestArticles[3].desc" />
                     </div>
                   </div>
                 </div>
                 <div class="section_content card-columns">
-                  <div v-if="newestArticles[3] !== undefined">
-                    <small-card-with-image :image="newestArticles[3].headImage" :path="'/articles/'+newestArticles[3].id" :title="newestArticles[3].title" :author="newestArticles[3].author.name" :author_url="'/authors/'+newestArticles[3].author.id" :created_at="newestArticles[3].created_at" :desc="newestArticles[3].desc" />
-                  </div>
                   <div v-if="newestArticles[4] !== undefined">
-                    <small-card-with-background :image="newestArticles[4].headImage" :path="'/articles/'+newestArticles[4].id" :title="newestArticles[4].title" :author="newestArticles[4].author.name" :author_url="'/authors/'+newestArticles[4].author.id" :created_at="newestArticles[4].created_at" :desc="newestArticles[4].desc" />
+                    <small-card-with-image :image="newestArticles[4].headImage" :path="'/articles/'+newestArticles[4].id" :title="newestArticles[4].title" :author="newestArticles[4].author.name" :author_url="'/authors/'+newestArticles[4].author.id" :created_at="newestArticles[4].created_at" :desc="newestArticles[4].desc" />
                   </div>
                   <div v-if="newestArticles[5] !== undefined">
-                    <default-card-no-image :image="newestArticles[5].headImage" :path="'/articles/'+newestArticles[5].id" :title="newestArticles[5].title" :author="newestArticles[5].author.name" :author_url="'/authors/'+newestArticles[5].author.id" :created_at="newestArticles[5].created_at" :desc="newestArticles[5].desc" />
+                    <small-card-with-background :image="newestArticles[5].headImage" :path="'/articles/'+newestArticles[5].id" :title="newestArticles[5].title" :author="newestArticles[5].author.name" :author_url="'/authors/'+newestArticles[5].author.id" :created_at="newestArticles[5].created_at" :desc="newestArticles[5].desc" />
                   </div>
                   <div v-if="newestArticles[6] !== undefined">
-                    <small-card-with-background :image="newestArticles[6].headImage" :path="'/articles/'+newestArticles[6].id" :title="newestArticles[6].title" :author="newestArticles[6].author.name" :author_url="'/authors/'+newestArticles[6].author.id" :created_at="newestArticles[6].created_at" :desc="newestArticles[6].desc" />
+                    <default-card-no-image :image="newestArticles[6].headImage" :path="'/articles/'+newestArticles[6].id" :title="newestArticles[6].title" :author="newestArticles[6].author.name" :author_url="'/authors/'+newestArticles[6].author.id" :created_at="newestArticles[6].created_at" :desc="newestArticles[6].desc" />
                   </div>
                   <div v-if="newestArticles[7] !== undefined">
-                    <default-card-no-image :image="newestArticles[7].headImage" :path="'/articles/'+newestArticles[7].id" :title="newestArticles[7].title" :author="newestArticles[7].author.name" :author_url="'/authors/'+newestArticles[7].author.id" :created_at="newestArticles[7].created_at" :desc="newestArticles[7].desc" />
+                    <small-card-with-background :image="newestArticles[7].headImage" :path="'/articles/'+newestArticles[7].id" :title="newestArticles[7].title" :author="newestArticles[7].author.name" :author_url="'/authors/'+newestArticles[7].author.id" :created_at="newestArticles[7].created_at" :desc="newestArticles[7].desc" />
                   </div>
                   <div v-if="newestArticles[8] !== undefined">
-                    <default-card-no-image :image="newestArticles[8].headImage" :path="'/articles/'+newestArticles[8].id" :title="newestArticles[8].title" :author="newestArticles[8].author.name" :author_url="'/authors/'+newestArticles[8].author.id" :created_at="newestArticles[8].created_at" :desc="newestArticles[8].desc" />
+                    <small-card-with-image :image="newestArticles[8].headImage" :path="'/articles/'+newestArticles[8].id" :title="newestArticles[8].title" :author="newestArticles[8].author.name" :author_url="'/authors/'+newestArticles[8].author.id" :created_at="newestArticles[8].created_at" :desc="newestArticles[8].desc" />
                   </div>
                   <div v-if="newestArticles[9] !== undefined">
                     <default-card-no-image :image="newestArticles[9].headImage" :path="'/articles/'+newestArticles[9].id" :title="newestArticles[9].title" :author="newestArticles[9].author.name" :author_url="'/authors/'+newestArticles[9].author.id" :created_at="newestArticles[9].created_at" :desc="newestArticles[9].desc" />
