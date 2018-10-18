@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="search" class="search w-50" id="search">
-        <input class="search__input" id="search-input" type="text" v-model="searchField" placeholder="you know for search 🔍" />
+        <input class="search__input" id="search-input" type="text" v-model="searchField" placeholder="you known, for search 🐳" />
         <button class="search__button" id="search-button"><svg width="32.01" height="32.01" viewBox="0 0 32 32">
                 <g fill="none" class="icon">
                     <path id="search-icon-line" d="M22.47 22.472l9.176 9.176" />
