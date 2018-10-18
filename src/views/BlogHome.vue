@@ -104,7 +104,7 @@ export default {
   },
 
   mounted () {
-    if (!this.welcome) {
+    if (!this.welcome && !window.toastrError) {
       window.toastr.success('欢迎欢迎！')
       this.welcomeUser()
     }
