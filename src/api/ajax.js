@@ -14,22 +14,6 @@ export default function ajax (url, data = {}, type = 'get') {
           window.toastr.error('请检查网络是否通畅')
           window.toastrError = true
         }
-        // let { status } = response
-        // let currentPath = router.currentRoute.path
-        // switch (status) {
-        //   case 404:
-        //     if (currentPath === '/' || currentPath === '/home') {
-        //       console.log('home or /')
-
-        //       break
-        //     }
-
-        //     router.push('/404')
-        //     break
-
-        //   default:
-        //     break
-        // }
 
         reject(error)
       })

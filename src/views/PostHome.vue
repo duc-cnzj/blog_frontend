@@ -12,6 +12,11 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
+  beforeRouteUpdate (to, from, next) {
+    this.fetchArticle(to.params.id)
+    next()
+  },
+
   data () {
     return {
     }
@@ -19,12 +24,6 @@ export default {
 
   computed: {
     ...mapState(['currentArticle'])
-  },
-
-  watch: {
-    '$route': function () {
-      this.fetchArticle(this.$route.params.id)
-    }
   },
 
   mounted () {

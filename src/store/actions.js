@@ -9,7 +9,7 @@ export default {
 
       commit(types.SET_CURRENT_ARTICLE, { article: article.data })
     } catch (err) {
-      if (err.response && err.status === 404) {
+      if (err.response && err.response.status === 404) {
         window.toastr.warning('该文章不存在！')
         router.go(-1)
       }
