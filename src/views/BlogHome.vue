@@ -97,9 +97,6 @@ export default {
   },
 
   created () {
-    setTimeout(() => {
-      this.init()
-    }, 1000)
     this.fetchHomeArticles()
   },
 
@@ -201,6 +198,7 @@ export default {
     async fetchHomeArticles () {
       const articles = await getHomeArticles()
       this.articles = articles.data
+      this.init()
     },
 
     getImage (path) {
