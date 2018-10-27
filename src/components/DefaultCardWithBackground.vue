@@ -1,6 +1,6 @@
 <template>
     <div class="card card_default card_default_with_background">
-        <div class="card_background" :style="'background-image:url('+image+')'"></div>
+        <div class="card_background" v-lazy:background-image="image"></div>
         <div class="card-body">
             <div class="card-title card-title-small">
                 <router-link :to="path">{{title}}</router-link>

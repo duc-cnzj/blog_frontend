@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="search" class="search w-50" id="search">
-        <input class="search__input" id="search-input" type="text" v-model="searchField" placeholder="you known, for search 🐳" />
+        <input class="search__input" id="search-input" type="text" v-model="searchField" placeholder="You Know, for Search 🐳" />
         <button class="search__button" id="search-button"><svg width="32.01" height="32.01" viewBox="0 0 32 32">
                 <g fill="none" class="icon">
                     <path id="search-icon-line" d="M22.47 22.472l9.176 9.176" />
@@ -12,12 +12,19 @@
 </template>
 
 <script>
+import _ from 'lodash'
 
 export default {
   data () {
     return {
       searchField: ''
     }
+  },
+
+  watch: {
+    searchField: _.debounce((value, oldValue) => {
+      window.search(value)
+    }, 1000)
   },
 
   methods: {

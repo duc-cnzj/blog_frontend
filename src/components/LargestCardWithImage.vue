@@ -1,7 +1,7 @@
 <template>
     <div class="card card_largest_with_image">
         <router-link :to="path">
-            <img class="card-img-top" :src="image" alt="headimage">
+            <img class="card-img-top duc-card-img-top" v-lazy="image" alt="headimage">
         </router-link>
         <div class="card-body">
             <div class="card-title">
@@ -31,8 +31,11 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .duc-search-content {
   margin-top: 15px;
+}
+.duc-card-img-top{
+    min-height: 400px;
 }
 </style>
