@@ -12,13 +12,14 @@ import Focus from './directives/focus'
 import DucHighlight from './directives/Highlight'
 import VueLazyload from 'vue-lazyload'
 import image404 from './assets/404.jpg'
+import imageLoading from './utils/randomLoadingImage'
 
 Vue.use(Focus)
 Vue.use(DucHighlight)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   error: image404,
-  loading: image404,
+  loading: imageLoading,
   attempt: 3
 })
 
