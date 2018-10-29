@@ -4,7 +4,7 @@ FROM node as build-stage
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb http://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list \
     && apt-get update \
-    && apt-get install -y git yarn \
+    && apt-get install -y git yarn gettext-base \
     && apt-get -y autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
@@ -12,6 +12,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 WORKDIR /app
 COPY package*.json ./
 COPY . .
+
 RUN yarn install  \
     && yarn run build
 
