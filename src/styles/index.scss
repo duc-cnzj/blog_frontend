@@ -1,5 +1,9 @@
 @import "~toastr/toastr.scss";
 
+@font-face {
+	font-family: "duc";
+	src: url("../assets/duc.otf");
+}
 .post_body img {
     width: 100%;
     box-shadow: #FC0 0 0 11px;
@@ -19,4 +23,13 @@
 
 .textcomplete-dropdown {
   z-index: 9999 !important;
+}
+
+code {
+    font-family: 'duc' !important;
+
+}
+pre {
+    border-radius: 5px !important;
+    box-shadow: 0px 3px 15px #dbfbe3 !important;
 }

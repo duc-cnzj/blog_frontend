@@ -239,6 +239,9 @@ export default {
       emoji[0].emojioneArea.on('keyup', function (btn, event) {
         vm.postContent = $('#emojiarea').data('emojioneArea').getText()
       })
+      emoji[0].emojioneArea.on('emojibtn.click', function (btn, event) {
+        vm.postContent = $('#emojiarea').data('emojioneArea').getText()
+      })
 
       let modalEmoji = $('#modal-emojiarea').emojioneArea({
         buttonTitle: '使用 tab 快速打开表情',
