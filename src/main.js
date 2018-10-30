@@ -13,6 +13,7 @@ import DucHighlight from './directives/Highlight'
 import VueLazyload from 'vue-lazyload'
 import image404 from './assets/404.jpg'
 import imageLoading from './utils/randomLoadingImage'
+import NProgress from 'nprogress'
 
 Vue.use(Focus)
 Vue.use(DucHighlight)
@@ -35,6 +36,12 @@ window.events = new Vue()
 window.search = function (value) {
   window.events.$emit('search', value)
 }
+
+router.beforeEach((to, from, next) => {
+  // NProgress.start()
+  NProgress.inc()
+  next()
+})
 
 new Vue({
   router,
