@@ -2,24 +2,24 @@
 @import "./nprogress.scss";
 
 @font-face {
-	font-family: "duc";
-	src: url("../assets/duc.otf");
+  font-family: "duc";
+  src: url("../assets/duc.otf");
 }
 .post_body img {
-    width: 100%;
-    box-shadow: #FC0 0 0 11px;
+  width: 100%;
+  box-shadow: #fc0 0 0 11px;
 }
 
 .post_body {
-    h1 {
-        text-align: center
-    }
+  h1 {
+    text-align: center;
+  }
 }
 
 .post_body {
-    p {
-        line-height: 2 !important;
-    }
+  p {
+    line-height: 2 !important;
+  }
 }
 
 .textcomplete-dropdown {
@@ -27,10 +27,21 @@
 }
 
 code {
-    font-family: 'duc' !important;
-    font-size: 14px !important;
+  font-family: "duc" !important;
+  font-size: 14px !important;
 }
 pre {
-    border-radius: 5px !important;
-    box-shadow: 0px 3px 15px #dbfbe3 !important;
+  border-radius: 5px !important;
+  box-shadow: 0px 3px 15px #dbfbe3 !important;
+}
+
+blockquote {
+  margin: 20px 0 !important;
+  background-color: #f5f8fc;
+  padding: 1rem;
+  color: #8796a8;
+  border-left: none;
+  p {
+    font-weight: normal !important;
+  }
 }
