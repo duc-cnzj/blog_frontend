@@ -223,6 +223,10 @@ export default {
   },
 
   mounted () {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
     this.fetchComments()
     let vm = this
     this.$nextTick(() => {
