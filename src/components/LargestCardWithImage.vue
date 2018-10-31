@@ -36,6 +36,7 @@ export default {
   margin-top: 15px;
 }
 .duc-card-img-top{
-    min-height: 400px;
+    min-height: 350px;
+    max-height: 400px;
 }
 </style>
