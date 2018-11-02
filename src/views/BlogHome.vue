@@ -13,7 +13,7 @@
                 <div class="col">
                   <div class="home_slider_content">
                     <div class="home_slider_item_category trans_200">
-                      <router-link :to="'categories/'+article.category">{{article.category}}</router-link>
+                      <router-link :to="'/categories/'+article.category.id">{{article.category.name}}</router-link>
                     </div>
                     <div class="home_slider_item_title">
                       <router-link :to="'/articles/'+article.id">{{article.title}}</router-link>
