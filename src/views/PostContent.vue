@@ -260,6 +260,9 @@ export default {
       modalEmoji[0].emojioneArea.on('keyup', function (btn, event) {
         vm.modalValue = $('#modal-emojiarea').data('emojioneArea').getText()
       })
+      modalEmoji[0].emojioneArea.on('emojibtn.click', function (btn, event) {
+        vm.modalValue = $('#modal-emojiarea').data('emojioneArea').getText()
+      })
     })
   },
 
