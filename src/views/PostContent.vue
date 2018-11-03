@@ -223,7 +223,7 @@ export default {
   },
 
   mounted () {
-    window.scrollTo({
+    scrollTo({
       top: 0,
       behavior: 'smooth'
     })
