@@ -11,7 +11,7 @@ export default function ajax (url, data = {}, type = 'get') {
         resolve(response.data)
       })
       .catch(function (error) {
-        console.log(error.message)
+        // console.log(error.message)
 
         if (error.message === 'Network Error' && window.toastrError === false) {
           window.toastr.error('请检查网络是否通畅')
