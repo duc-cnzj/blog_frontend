@@ -433,9 +433,9 @@ export default {
 *********************************/
 
 .post_body {
-  padding-left: 69px;
+  padding-left: 40px;
   padding-top: 59px;
-  padding-right: 100px;
+  padding-right: 40px;
   padding-bottom: 45px;
   background: #ffffff;
   border-radius: 6px;

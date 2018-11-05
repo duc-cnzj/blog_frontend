@@ -45,3 +45,9 @@ blockquote {
     font-weight: normal !important;
   }
 }
+
+p {
+  li{
+    list-style-position: inside;
+  }
+}
