@@ -174,6 +174,7 @@ import { mapState } from 'vuex'
 import { postComments, getCommentsByArticleId } from '@api/api'
 import 'emojionearea'
 import 'jquery-textcomplete'
+import $ from 'jquery'
 
 window.emojioneVersion = '4.0'
 

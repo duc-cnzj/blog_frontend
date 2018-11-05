@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 export default function () {
   /* JS Document */
 
@@ -59,7 +61,6 @@ export default function () {
 
     function initMenu () {
       if ($('.menu').length) {
-        var menu = $('.menu')
         if ($('.hamburger').length) {
           burger.on('click', function () {
             if (menuActive) {

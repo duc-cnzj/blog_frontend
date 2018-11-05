@@ -85,6 +85,7 @@
 <script>
 import { getHomeArticles } from '@api/api'
 import { mapState, mapActions } from 'vuex'
+import $ from 'jquery'
 
 export default {
   props: ['recommendArticles'],

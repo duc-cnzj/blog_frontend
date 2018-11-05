@@ -67,6 +67,7 @@ import _ from 'lodash'
 import { mapState, mapActions } from 'vuex'
 import SidebarLoading from '@c/SidebarLoading'
 import custom from '@assets/custom.js'
+import $ from 'jquery'
 
 export default {
   components: { SidebarLoading },
