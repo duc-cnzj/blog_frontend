@@ -51,3 +51,13 @@ p {
     list-style-position: inside;
   }
 }
+
+ul {
+  li {
+    list-style-type: disc;
+  }
+}
+
+h2, h3{
+  line-height: 6rem;
+}
