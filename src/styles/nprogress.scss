@@ -1,5 +1,5 @@
 /* Make clicks pass-through */
-$duc-color: #72f756d4;
+$duc-color: unquote('#72f756d4');
 
 #nprogress {
     pointer-events: none;
