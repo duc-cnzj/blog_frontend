@@ -2,12 +2,15 @@
   <div class="page_content">
     <div class="container">
       <div class="row row-lg-eq-height">
-        <div class="col-lg-9 offset-lg-1">
+        <div class="col-lg-12">
           <div class="section_content" v-if="articles !== null && articles.length !== 0">
 
             <div class="card-deck-wrapper duc">
-              <div class="card-deck" v-for="item in articles" :key="item.id">
-                <largest-card-with-image :image="item.headImage" :content="getHighlightContent(item)" :path="'/articles/'+item.id" :title="getHighlight(item, 'title')" :author="item.author.name" :author_url="'/authors/'+item.author.id" :created_at="item.created_at" :desc="getHighlight(item, 'desc')" />
+              <div class="card-deck" v-for="(items, index) in articles" :key="index">
+                <custom-card-with-image v-for="item in items" :key="item.id" :image="item.headImage" :content="getHighlightContent(item)" :path="'/articles/'+item.id" :title="getHighlight(item, 'title')" :author="item.author.name" :author_url="'/authors/'+item.author.id" :created_at="item.created_at" :desc="getHighlight(item, 'desc')" />
+                <template v-if="items.length < chunkNum">
+                  <custom-card-with-image class="duc-none" v-for="(item, index) in Array(chunkNum - items.length)" :key="index" />
+                </template>
               </div>
             </div>
 
@@ -34,6 +37,7 @@
 
 <script>
 import LargestCardWithImage from '@c/LargestCardWithImage'
+import CustomCardWithImage from '@c/CustomCardWithImage'
 import Loading from '@c/Loading'
 import Paginator from '@c/Paginator'
 import _ from 'lodash'
@@ -41,14 +45,15 @@ import { getArticles, elasticSearch } from '@api/api'
 
 export default {
   components: {
-    LargestCardWithImage, Paginator, Loading
+    LargestCardWithImage, Paginator, Loading, CustomCardWithImage
   },
 
   data () {
     return {
       articles: null,
       dataSet: {},
-      showPaginate: true
+      showPaginate: true,
+      chunkNum: 3
     }
   },
 
@@ -98,7 +103,7 @@ export default {
 
     async fetchArticles (page) {
       const articles = await getArticles(page)
-      this.articles = articles.data
+      this.articles = _.chunk(articles.data, this.chunkNum)
       this.dataSet = Object.assign(articles.links, articles.meta)
     }
   }
@@ -106,6 +111,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.duc-none {
+  opacity: 0;
+}
 .duc {
   margin-bottom: 30px;
 }
