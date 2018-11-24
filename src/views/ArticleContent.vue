@@ -6,8 +6,16 @@
           <div class="section_content" v-if="articles !== null && articles.length !== 0">
 
             <div class="card-deck-wrapper duc">
-              <div class="card-deck" v-for="(items, index) in articles" :key="index">
-                <custom-card-with-image v-for="item in items" :key="item.id" :image="item.headImage" :content="getHighlightContent(item)" :path="'/articles/'+item.id" :title="getHighlight(item, 'title')" :author="item.author.name" :author_url="'/authors/'+item.author.id" :created_at="item.created_at" :desc="getHighlight(item, 'desc')" />
+              <div class="card-deck" v-for="(items, index) in chunkArticles" :key="index">
+                <custom-card-with-image v-for="item in items" :key="item.id"
+                    :image="item.headImage"
+                    :content="getHighlightContent(item)"
+                    :path="'/articles/'+item.id"
+                    :title="getHighlight(item, 'title')"
+                    :author="item.author.name"
+                    :author_url="'/authors/'+item.author.id"
+                    :created_at="item.created_at"
+                    :desc="getHighlight(item, 'desc')" />
                 <template v-if="items.length < chunkNum">
                   <custom-card-with-image class="duc-none" v-for="(item, index) in Array(chunkNum - items.length)" :key="index" />
                 </template>
@@ -57,6 +65,12 @@ export default {
     }
   },
 
+  computed: {
+    chunkArticles () {
+      return _.chunk(this.articles, this.chunkNum)
+    }
+  },
+
   created () {
     this.searchListen()
     this.fetchArticles()
@@ -103,7 +117,7 @@ export default {
 
     async fetchArticles (page) {
       const articles = await getArticles(page)
-      this.articles = _.chunk(articles.data, this.chunkNum)
+      this.articles = articles.data
       this.dataSet = Object.assign(articles.links, articles.meta)
     }
   }
