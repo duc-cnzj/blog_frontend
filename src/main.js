@@ -39,7 +39,7 @@ window.search = function (value) {
 
 router.beforeEach((to, from, next) => {
   // NProgress.start()
-  NProgress.inc()
+  // NProgress.inc()
   next()
 })
 

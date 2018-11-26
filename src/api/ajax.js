@@ -1,11 +1,25 @@
 import axios from 'axios'
 import NProgress from 'nprogress'
 
-axios.defaults.headers.common['accept'] = 'application/json'
+var instance = axios.create()
+instance.defaults.headers.common['accept'] = 'application/json'
+
+instance.interceptors.request.use(
+  function (config) {
+    // 在发送请求之前做些什么
+    NProgress.inc()
+
+    return config
+  },
+  function (error) {
+    // 对请求错误做些什么
+    return Promise.reject(error)
+  }
+)
 
 export default function ajax (url, data = {}, type = 'get') {
   return new Promise((resolve, reject) => {
-    axios[type](url, data)
+    instance[type](url, data)
       .then(function (response) {
         NProgress.done()
         resolve(response.data)
