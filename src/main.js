@@ -13,7 +13,7 @@ import DucHighlight from './directives/Highlight'
 import VueLazyload from 'vue-lazyload'
 import image404 from './assets/404.jpg'
 import imageLoading from './utils/randomLoadingImage'
-import NProgress from 'nprogress'
+// import NProgress from 'nprogress'
 
 Vue.use(Focus)
 Vue.use(DucHighlight)

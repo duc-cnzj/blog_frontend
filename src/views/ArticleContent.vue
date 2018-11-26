@@ -120,7 +120,11 @@ export default {
       this.articles = articles.data
       this.dataSet = Object.assign(articles.links, articles.meta)
     }
+  },
+  destroyed () {
+    window.events.$off('search')
   }
+
 }
 </script>
 
