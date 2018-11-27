@@ -13,8 +13,11 @@ import DucHighlight from './directives/Highlight'
 import VueLazyload from 'vue-lazyload'
 import image404 from './assets/404.jpg'
 import imageLoading from './utils/randomLoadingImage'
+import 'iview/dist/styles/iview.css'
+import { BackTop } from 'iview'
 // import NProgress from 'nprogress'
 
+Vue.component('BackTop', BackTop)
 Vue.use(Focus)
 Vue.use(DucHighlight)
 Vue.use(VueLazyload, {

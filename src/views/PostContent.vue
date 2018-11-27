@@ -235,7 +235,7 @@ export default {
         buttonTitle: '使用 tab 快速打开表情',
         pickerPosition: 'bottom',
         searchPlaceholder: '快速搜索表情',
-        placeholder: '你的评论...',
+        placeholder: '你的评论...（tips：使用 : 或者 Tab 快速呼出表情）',
         tonesStyle: 'bullet',
         saveEmojisAs: 'image',
         useInternalCDN: true
