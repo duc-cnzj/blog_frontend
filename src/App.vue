@@ -52,7 +52,7 @@ export default {
       .listen('ArticleCreated', (e) => {
         this.$Notice.info({
           title: `作者：${e.author}发布了新文章`,
-          desc: `《${e.title}》：${e.desc}, <a href="#/articles/${e.id}" target='_blank'>点击链接查看</a>。`
+          desc: `《${e.title}》：${e.desc}, <router-link to="/articles/${e.id}">点击链接查看</router-link>。`
         })
       })
   },
