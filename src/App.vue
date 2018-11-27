@@ -47,6 +47,15 @@ export default {
       scrolled: false
     }
   },
+  created () {
+    window.Echo.channel('article.created')
+      .listen('ArticleCreated', (e) => {
+        this.$Notice.info({
+          title: `作者：${e.author}发布了新文章`,
+          desc: `《${e.title}》：${e.desc}, <a href="#/articles/${e.id}" target='_blank'>点击链接查看</a>。`
+        })
+      })
+  },
   mounted () {
     setTimeout(() => { this.loading = false }, 1000)
     window.addEventListener('scroll', this.handleScroll)

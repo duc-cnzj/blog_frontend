@@ -14,10 +14,17 @@ import VueLazyload from 'vue-lazyload'
 import image404 from './assets/404.jpg'
 import imageLoading from './utils/randomLoadingImage'
 import 'iview/dist/styles/iview.css'
-import { BackTop } from 'iview'
+import iView from 'iview'
 // import NProgress from 'nprogress'
+import Echo from 'laravel-echo'
 
-Vue.component('BackTop', BackTop)
+window.io = require('socket.io-client')
+window.Echo = new Echo({
+  broadcaster: 'socket.io',
+  host: `${process.env.VUE_APP_URL}/6001`
+})
+
+Vue.use(iView)
 Vue.use(Focus)
 Vue.use(DucHighlight)
 Vue.use(VueLazyload, {
