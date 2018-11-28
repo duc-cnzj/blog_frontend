@@ -29,7 +29,7 @@
                   <div class="temperature">+10°</div>
                   <img
                     class="weather_icon"
-                    src="images/cloud.png"
+                    src="/images/cloud.png"
                     alt=""
                   >
                 </div>
@@ -44,7 +44,7 @@
                   />
                   <img
                     class="header_search_icon"
-                    src="images/search.png"
+                    src="/images/search.png"
                     alt=""
                   >
                 </form>
@@ -91,7 +91,7 @@
           />
           <img
             class="header_search_icon menu_mm"
-            src="images/search_2.png"
+            src="/images/search_2.png"
             alt=""
           >
         </form>
