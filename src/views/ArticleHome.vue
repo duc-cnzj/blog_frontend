@@ -7,7 +7,7 @@
           <h1>文章列表</h1>
         </div>
         <div class="d-flex flex-row justify-content-center">
-          <search-article />
+          <search-article :query="$route.query.searchField" />
         </div>
       </div>
     </div>

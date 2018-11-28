@@ -15,8 +15,15 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
   beforeRouteUpdate (to, from, next) {
-    this.fetchArticle(to.params.id)
-    next()
+    if (Object.is(Number(to.params.id), NaN)) {
+      window.toastr.error('非法路由地址')
+
+      next({ path: '/home' })
+    } else {
+      this.fetchArticle(to.params.id)
+
+      next()
+    }
   },
 
   data () {

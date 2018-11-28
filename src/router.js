@@ -35,6 +35,14 @@ export default new Router({
       components: {
         home: PostHome,
         content: PostContent
+      },
+      beforeEnter: (to, from, next) => {
+        if (Object.is(Number(to.params.id), NaN)) {
+          window.toastr.error('非法路由地址')
+          next({ path: '/home' })
+        } else {
+          next()
+        }
       }
     },
     {

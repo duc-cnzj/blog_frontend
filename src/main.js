@@ -17,6 +17,7 @@ import 'iview/dist/styles/iview.css'
 import iView from 'iview'
 // import NProgress from 'nprogress'
 import Echo from 'laravel-echo'
+import myMixin from '@/mixins/mousetrap'
 
 window.io = require('socket.io-client')
 window.Echo = new Echo({
@@ -54,6 +55,7 @@ router.beforeEach((to, from, next) => {
 })
 
 new Vue({
+  mixins: [myMixin],
   router,
   store,
   render: h => h(App)

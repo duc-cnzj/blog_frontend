@@ -15,13 +15,25 @@
 import _ from 'lodash'
 
 export default {
+  props: ['query'],
+
   data () {
     return {
       searchField: ''
     }
   },
 
+  created () {
+    if (this.query) {
+      this.searchField = this.query
+    }
+  },
+
   watch: {
+    query: function (v, o) {
+      this.searchField = v
+    },
+
     searchField: _.debounce((value, oldValue) => {
       window.search(value)
     }, 1000)

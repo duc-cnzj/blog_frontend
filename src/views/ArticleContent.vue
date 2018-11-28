@@ -73,7 +73,9 @@ export default {
 
   created () {
     this.searchListen()
-    this.fetchArticles()
+    if (!this.$route.query.searchField) {
+      this.fetchArticles()
+    }
   },
 
   methods: {
