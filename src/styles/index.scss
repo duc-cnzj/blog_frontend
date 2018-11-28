@@ -31,8 +31,10 @@
     line-height: 2 !important;
 
     img {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
       width: 100%;
-      box-shadow: #fc0 0 0 11px;
+      box-shadow: rgba(255, 204, 0, 0.5) 0 0 11px;
     }
 
     font-size: 15px;
