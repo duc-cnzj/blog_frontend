@@ -88,7 +88,7 @@
                                     <li class="comment" v-for="reply in comment.replies" :key="reply.id">
                                       <div class="comment_body">
                                         <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
-                                          <div class="comment_author_image"><div><img src="/images/comment_author_2.jpg" alt=""></div></div>
+                                          <div class="comment_author_image"><div><img class="reply-image" :src="reply.author.avatar !== '' ? reply.author.avatar : '/images/comment_author_2.jpg'" alt=""></div></div>
                                           <small class="post_meta"><a href="#">{{reply.author.name}}</a><span>{{reply.created_at}}</span></small>
                                         </div>
                                         <div class="comment_content">
@@ -746,5 +746,11 @@ export default {
 
 .duc-loading {
   // height: 20vh;
+}
+
+.reply-image {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%
 }
 </style>
