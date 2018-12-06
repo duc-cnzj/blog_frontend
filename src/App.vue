@@ -7,7 +7,7 @@
       </div>
     </transition>
 
-    <div class="super_container" v-if="! loading">
+    <div class="super_container" v-if="! loading" v-cloak>
       <!-- Header -->
       <blog-header :links="links" :scrolled="scrolled" />
 

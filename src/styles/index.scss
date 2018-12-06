@@ -6,6 +6,10 @@
   src: url("../assets/duc.otf");
 }
 
+[v-cloak] {
+  display: none;
+}
+
 .post_body {
   p {
     list-style-position: inside;
