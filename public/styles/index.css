@@ -1,29 +1,4 @@
 @charset "utf-8";
-/* CSS Document */
-
-/******************************
-
-[Table of Contents]
-
-1. Fonts
-2. Body and some general stuff
-3. Header
-	3.1 Logo
-	3.2 Main Navigation
-	3.3 Weather and Search
-	3.4 Hamburger
-4. Menu
-
-
-******************************/
-
-/***********
-1. Fonts
-***********/
-
-/*********************************
-2. Body and some general stuff
-*********************************/
 
 * {
 	margin: 0;
@@ -34,7 +9,6 @@
 }
 
 body {
-	font-family: 'Work Sans', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
 	background: #f7f7f7;
@@ -55,7 +29,6 @@ ul {
 }
 
 p {
-	font-family: 'Work Sans', sans-serif;
 	font-size: 14px;
 	line-height: 1.45;
 	color: rgba(0, 0, 0, 1);
@@ -71,7 +44,6 @@ p:last-of-type {
 p a {
 	display: inline;
 	position: relative;
-	color: inherit;
 	border-bottom: solid 1px #ffa07f;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;

@@ -13,14 +13,16 @@
 .post_body {
   p {
     list-style-position: inside;
-    code {
-      font-family: "duc" !important;
-    }
+
     pre {
       border-radius: 5px !important;
       box-shadow: 0px 3px 15px #dbfbe3 !important;
 
       background-color: cornsilk;
+
+      code {
+        font-family: "duc" !important;
+      }
     }
 
     blockquote {
