@@ -3,7 +3,7 @@
   <div>
     <transition name="out" leave-active-class="animated zoomOut">
       <div v-if="loading">
-        <home-loading />
+          <component v-bind:is="currentTabComponent"></component>
       </div>
     </transition>
 
@@ -28,23 +28,39 @@
 </template>
 
 <script>
-import HomeLoading from '@c/HomeLoading'
 import BlogFooter from '@c/BlogFooter'
 import BlogHeader from '@c/BlogHeader'
 import BlogHome from '@views/BlogHome'
 import BlogContent from '@views/BlogContent'
 import { getNavLinks } from '@api/api'
+import _ from 'lodash'
 
 export default {
   components: {
-    BlogFooter, BlogHeader, BlogHome, BlogContent, HomeLoading
+    BlogFooter,
+    BlogHeader,
+    BlogHome,
+    BlogContent,
+    HomeLoadingTwo: () => import('@c/Loading/HomeLoadingOne'),
+    HomeLoadingOne: () => import('@c/Loading/HomeLoadingTwo'),
+    HomeLoadingThree: () => import('@c/Loading/HomeLoadingThree'),
+    HomeLoadingFour: () => import('@c/Loading/HomeLoadingFour'),
+    // HomeLoadingFive: () => import('@c/Loading/HomeLoadingFive'),
+    HomeLoadingSix: () => import('@c/Loading/HomeLoadingSix')
   },
   data () {
     return {
       loading: true,
+      loadingName: ['one', 'two', 'three', 'four', 'six'],
       links: [],
       homeArticles: [],
       scrolled: false
+    }
+  },
+
+  computed: {
+    currentTabComponent () {
+      return 'home-loading-' + _.sample(this.loadingName)
     }
   },
   created () {

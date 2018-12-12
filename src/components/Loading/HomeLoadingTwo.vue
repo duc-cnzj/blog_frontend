@@ -30,7 +30,7 @@
   height: 100vh;
   background-color: yellow;
 }
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+// @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
 body {
   background-color: #f1c40f;
