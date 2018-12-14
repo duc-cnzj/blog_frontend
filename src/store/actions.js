@@ -1,5 +1,10 @@
 import * as types from './mutation-types'
-import { getArticleBy, getTrendingArticles, getCategories } from '@api/api'
+import {
+  getArticleBy,
+  getTrendingArticles,
+  getCategories,
+  getTopArticles
+} from '@api/api'
 import router from '../router'
 
 export default {
@@ -21,6 +26,14 @@ export default {
 
     commit(types.SET_TRENDING_ARTICLES, {
       trendingArticles: trendingArticles.data
+    })
+  },
+
+  async getTopArticles ({ commit }) {
+    const topArticles = await getTopArticles()
+
+    commit(types.SET_TOP_ARTICLES, {
+      topArticles: topArticles.data
     })
   },
 

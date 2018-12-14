@@ -9,6 +9,10 @@ export default {
     state.trendingArticles = trendingArticles
   },
 
+  [types.SET_TOP_ARTICLES] (state, { topArticles }) {
+    state.topArticles = topArticles
+  },
+
   [types.SET_CATEGORIES] (state, { categories }) {
     state.categories = categories
   },

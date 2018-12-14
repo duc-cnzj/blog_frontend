@@ -1,59 +1,214 @@
 <template>
   <div class="sidebar">
 
-    <div class="sidebar_background">
-      <!-- Top Stories -->
+    <div class="sidebar_background"></div>
+    <!-- Top Stories -->
 
-      <div class="sidebar_section">
-        <div class="sidebar_title_container container">
-          <div class="sidebar_title">最热文章</div>
-          <div class="sidebar_slider_nav" v-if="groupArticles.length > 0 ">
-            <div class="custom_nav_container sidebar_slider_nav_container">
-              <div class="custom_prev custom_prev_top">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
-                  <polyline fill="#bebebe" points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 " />
-                </svg>
-              </div>
-              <ul id="custom_dots" class="custom_dots custom_dots_top">
-                <li class="custom_dot custom_dot_top active"><span></span></li>
-                <li class="custom_dot custom_dot_top"><span></span></li>
-                <li class="custom_dot custom_dot_top"><span></span></li>
-              </ul>
-              <div class="custom_next custom_next_top">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
-                  <polyline fill="#bebebe" points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 " />
-                </svg>
-              </div>
+    <div class="sidebar_section">
+      <div class="sidebar_title_container">
+        <div class="sidebar_title">置顶文章</div>
+        <div
+          class="sidebar_slider_nav"
+          v-if="groupTopArticles.length > 0 "
+        >
+          <div class="custom_nav_container sidebar_slider_nav_container">
+            <div class="custom_prev custom_prev_top">
+              <svg
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="7px"
+                height="12px"
+                viewBox="0 0 7 12"
+                enable-background="new 0 0 7 12"
+                xml:space="preserve"
+              >
+                <polyline
+                  fill="#bebebe"
+                  points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "
+                />
+              </svg>
+            </div>
+            <ul
+              id="custom_dots"
+              class="custom_dots custom_dots_top"
+            >
+              <li class="custom_dot custom_dot_top active"><span></span></li>
+              <li class="custom_dot custom_dot_top"><span></span></li>
+              <li class="custom_dot custom_dot_top"><span></span></li>
+            </ul>
+            <div class="custom_next custom_next_top">
+              <svg
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="7px"
+                height="12px"
+                viewBox="0 0 7 12"
+                enable-background="new 0 0 7 12"
+                xml:space="preserve"
+              >
+                <polyline
+                  fill="#bebebe"
+                  points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "
+                />
+              </svg>
             </div>
           </div>
         </div>
-        <div class="sidebar_section_content">
+      </div>
+      <div class="sidebar_section_content">
 
-          <!-- Top Stories Slider -->
-          <div class="sidebar_slider_container">
+        <!-- Top Stories Slider -->
+        <div class="sidebar_slider_container">
 
-            <sidebar-loading v-if="groupArticles.length === 0" />
+          <sidebar-loading v-if="groupTopArticles.length === 0" />
 
-            <div class="owl-carousel owl-theme owl-loaded sidebar_slider_top" v-if="groupArticles.length > 0 ">
-              <!-- Top Stories Slider Item -->
-              <div class="duc" v-for="(articles, index) in groupArticles" :key="index">
-                <!-- Sidebar Post -->
-                <div class="side_post" v-for="(item, i) in articles" :key="i">
-                  <router-link :to="'/articles/'+item.id">
-                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-                      <div class="side_post_image">
-                        <div><img :src="item.headImage" alt="" class="image70"></div>
-                        </div>
-                        <div class="side_post_content">
-                          <div class="side_post_title">{{item.title}}</div>
-                          <small class="post_meta">{{item.author.name}}<span>{{item.created_at}}</span></small>
-                        </div>
-                      </div>
-                  </router-link>
-                </div>
+          <div
+            class="owl-carousel owl-theme sidebar_slider_top"
+            v-if="groupTopArticles.length > 0 "
+          >
+
+            <div
+              class="item"
+              v-for="(articles, index) in groupTopArticles"
+              :key="index"
+            >
+              <!-- Sidebar Post -->
+              <div
+                class="side_post"
+                v-for="(item, i) in articles"
+                :key="i"
+              >
+                <router-link :to="'/articles/'+item.id">
+                  <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                    <div class="side_post_image">
+                      <div><img
+                          :src="item.headImage"
+                          alt=""
+                          class="image70"
+                        ></div>
+                    </div>
+                    <div class="side_post_content">
+                      <div class="side_post_title">{{item.title}}</div>
+                      <small class="post_meta">{{item.author.name}}<span>{{item.created_at}}</span></small>
+                    </div>
+                  </div>
+                </router-link>
               </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="sidebar_section duc">
+      <div class="sidebar_title_container">
+        <div class="sidebar_title">最热文章</div>
+        <div
+          class="sidebar_slider_nav"
+          v-if="groupArticles.length > 0 "
+        >
+          <div class="custom_nav_container sidebar_slider_nav_container">
+            <div class="custom_prev custom_prev_top">
+              <svg
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="7px"
+                height="12px"
+                viewBox="0 0 7 12"
+                enable-background="new 0 0 7 12"
+                xml:space="preserve"
+              >
+                <polyline
+                  fill="#bebebe"
+                  points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "
+                />
+              </svg>
+            </div>
+            <ul
+              id="custom_dots"
+              class="custom_dots custom_dots_top"
+            >
+              <li class="custom_dot custom_dot_top active"><span></span></li>
+              <li class="custom_dot custom_dot_top"><span></span></li>
+              <li class="custom_dot custom_dot_top"><span></span></li>
+            </ul>
+            <div class="custom_next custom_next_top">
+              <svg
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px"
+                y="0px"
+                width="7px"
+                height="12px"
+                viewBox="0 0 7 12"
+                enable-background="new 0 0 7 12"
+                xml:space="preserve"
+              >
+                <polyline
+                  fill="#bebebe"
+                  points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "
+                />
+              </svg>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="sidebar_section_content">
+
+        <!-- Top Stories Slider -->
+        <div class="sidebar_slider_container">
+
+          <sidebar-loading v-if="groupArticles.length === 0" />
+
+          <div
+            class="owl-carousel owl-theme sidebar_slider_top"
+            v-if="groupArticles.length > 0 "
+          >
+
+            <div
+              class="item"
+              v-for="(articles, index) in groupArticles"
+              :key="index"
+            >
+              <!-- Sidebar Post -->
+              <div
+                class="side_post"
+                v-for="(item, i) in articles"
+                :key="i"
+              >
+                <router-link :to="'/articles/'+item.id">
+                  <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                    <div class="side_post_image">
+                      <div><img
+                          :src="item.headImage"
+                          alt=""
+                          class="image70"
+                        ></div>
+                    </div>
+                    <div class="side_post_content">
+                      <div class="side_post_title">{{item.title}}</div>
+                      <small class="post_meta">{{item.author.name}}<span>{{item.created_at}}</span></small>
+                    </div>
+                  </div>
+                </router-link>
+              </div>
+
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -77,6 +232,10 @@ export default {
       this.init()
       custom()
     })
+    this.fetchTopArticles().then(res => {
+      this.init()
+      custom()
+    })
   },
 
   data () {
@@ -86,11 +245,16 @@ export default {
   },
 
   computed: {
-    ...mapState(['trendingArticles']),
+    ...mapState(['trendingArticles', 'topArticles']),
 
     groupArticles () {
       return _.chunk(this.trendingArticles, this.chunkSize)
+    },
+
+    groupTopArticles () {
+      return _.chunk(this.topArticles, this.chunkSize)
     }
+
   },
 
   methods: {
@@ -109,7 +273,8 @@ export default {
     },
 
     ...mapActions({
-      fecthTrendingArticles: 'getTrendingArticles'
+      fecthTrendingArticles: 'getTrendingArticles',
+      fetchTopArticles: 'getTopArticles'
     })
   }
 }
@@ -135,18 +300,23 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  width: 345px;
+  width: 375px;
   height: 100%;
   background: #ededed;
 }
+// .sidebar_title {
+//   font-family: "Ubuntu", sans-serif;
+//   font-size: 18px;
+//   font-weight: 700;
+//   padding-top: 15px;
+//   color: #000000;
+// }
+
 .sidebar_title {
   font-family: "Ubuntu", sans-serif;
   font-size: 18px;
   font-weight: 700;
-  margin: 20px;
   color: #000000;
-}
-.sidebar_section_content {
 }
 .sidebar_slider_container {
   width: 100%;
@@ -189,9 +359,8 @@ export default {
 }
 .sidebar_slider_nav {
   position: absolute;
-  margin: 5px;
   top: 5px;
-  right: 25px;
+  right: 0;
 }
 .sidebar_slider_nav_container .custom_prev svg polyline,
 .sidebar_slider_nav_container .custom_next svg polyline {
@@ -311,9 +480,18 @@ export default {
   margin-top: 13px;
 }
 
-.duc {
-  .side_post {
-    margin: 30px;
+.sidebar_section_content {
+  padding-top: 55px;
+}
+
+@media only screen and (max-width: 991px) {
+  .sidebar_background {
+    width: 100%;
   }
+}
+
+.duc {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 </style>

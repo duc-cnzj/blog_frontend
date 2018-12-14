@@ -21,11 +21,15 @@ export const getPopularArticles = () => ajax(`${BASE_URL}/popular_articles`)
 
 export const getTrendingArticles = () => ajax(`${BASE_URL}/trending_articles`)
 
+export const getTopArticles = () => ajax(`${BASE_URL}/top_articles`)
+
 export const getArticleBy = id => ajax(`${BASE_URL}/articles/${id}`)
 
-export const elasticSearch = query => ajax(`${BASE_URL}/search_articles?q=${query}`)
+export const elasticSearch = query =>
+  ajax(`${BASE_URL}/search_articles?q=${query}`)
 
-export const getCommentsByArticleId = id => ajax(`${BASE_URL}/articles/${id}/comments`)
+export const getCommentsByArticleId = id =>
+  ajax(`${BASE_URL}/articles/${id}/comments`)
 
 export const postComments = ({ articleId, postContent, commentId = 0 }) =>
   ajax(
