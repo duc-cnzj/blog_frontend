@@ -1274,7 +1274,7 @@ section {
   color: #000000;
 }
 .sidebar_section_content {
-  padding-top: 55px;
+  padding-top: 10px;
 }
 .sidebar_slider_container {
   width: 100%;
