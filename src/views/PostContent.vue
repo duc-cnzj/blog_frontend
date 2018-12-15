@@ -87,7 +87,7 @@
 
                         <template v-for="(comment, index) in visableComments">
                           <li
-                            class="comment animated zoomIn"
+                            class="comment"
                             :key="comment.id"
                           >
                             <div class="comment_body">

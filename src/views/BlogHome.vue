@@ -104,10 +104,10 @@ export default {
   },
 
   mounted () {
-    if (!this.welcome && !window.toastrError) {
-      window.toastr.success('欢迎欢迎！')
-      this.welcomeUser()
-    }
+    // if (!this.welcome && !window.toastrError) {
+    //   window.toastr.success('欢迎欢迎！')
+    // this.welcomeUser()
+    // }
   },
 
   watch: {

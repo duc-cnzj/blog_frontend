@@ -1,11 +1,11 @@
 <template>
 
   <div>
-    <transition name="out" leave-active-class="animated zoomOut">
+    <!-- <transition name="out" leave-active-class="animated zoomOut"> -->
       <div v-if="loading">
           <component v-bind:is="currentTabComponent"></component>
       </div>
-    </transition>
+    <!-- </transition> -->
 
     <div class="super_container" v-if="! loading" v-cloak>
       <!-- Header -->
