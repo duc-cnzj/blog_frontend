@@ -481,7 +481,7 @@ export default {
 }
 
 .sidebar_section_content {
-  padding-top: 55px;
+  padding-top: 15px;
 }
 
 @media only screen and (max-width: 991px) {
