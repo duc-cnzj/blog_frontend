@@ -11,7 +11,7 @@
           class="sidebar_slider_nav"
           v-if="groupTopArticles.length > 0 "
         >
-          <div class="custom_nav_container sidebar_slider_nav_container">
+          <!-- <div class="custom_nav_container sidebar_slider_nav_container">
             <div class="custom_prev custom_prev_top">
               <svg
                 version="1.1"
@@ -58,7 +58,7 @@
                 />
               </svg>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="sidebar_section_content">
@@ -69,7 +69,7 @@
           <sidebar-loading v-if="groupTopArticles.length === 0" />
 
           <div
-            class="owl-carousel owl-theme sidebar_slider_top"
+            class="owl-carousel owl-carousel-one owl-theme sidebar_slider_top"
             v-if="groupTopArticles.length > 0 "
           >
 
@@ -173,7 +173,7 @@
           <sidebar-loading v-if="groupArticles.length === 0" />
 
           <div
-            class="owl-carousel owl-theme sidebar_slider_top"
+            class="owl-carousel owl-carousel-two owl-theme sidebar_slider_top"
             v-if="groupArticles.length > 0 "
           >
 
@@ -252,7 +252,7 @@ export default {
     },
 
     groupTopArticles () {
-      return _.chunk(this.topArticles, this.chunkSize)
+      return _.chunk(this.topArticles, 6)
     }
 
   },
@@ -260,7 +260,7 @@ export default {
   methods: {
     init () {
       $(document).ready(function () {
-        $('.owl-carousel').owlCarousel({
+        $('.owl-carousel-two').owlCarousel({
           items: 1,
           loop: true,
           autoplay: false,
