@@ -1,11 +1,11 @@
 <template>
 
   <div>
-    <!-- <transition name="out" leave-active-class="animated zoomOut"> -->
+    <transition name="out" leave-active-class="animated zoomOut">
       <div v-if="loading">
           <component v-bind:is="currentTabComponent"></component>
       </div>
-    <!-- </transition> -->
+    </transition>
 
     <div class="super_container" v-if="! loading" v-cloak>
       <!-- Header -->
@@ -43,15 +43,15 @@ export default {
     BlogContent,
     HomeLoadingOne: () => import('@c/Loading/HomeLoadingOne'),
     // HomeLoadingTwo: () => import('@c/Loading/HomeLoadingTwo'),
-    HomeLoadingThree: () => import('@c/Loading/HomeLoadingThree'),
-    HomeLoadingFour: () => import('@c/Loading/HomeLoadingFour'),
+    // HomeLoadingThree: () => import('@c/Loading/HomeLoadingThree'),
+    // HomeLoadingFour: () => import('@c/Loading/HomeLoadingFour'),
     // HomeLoadingFive: () => import('@c/Loading/HomeLoadingFive'),
     HomeLoadingSix: () => import('@c/Loading/HomeLoadingSix')
   },
   data () {
     return {
       loading: true,
-      loadingName: ['one', 'three', 'four', 'six'],
+      loadingName: ['one', 'six'],
       links: [],
       homeArticles: [],
       scrolled: false
