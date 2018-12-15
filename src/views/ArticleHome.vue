@@ -46,6 +46,10 @@ export default {
 
 .duc {
   font-size: 30px;
+  h1 {
+    font-size: 30px;
+    font-family: "Work Sans", sans-serif;
+  }
   width: 100%;
   height: 100%;
 }
@@ -55,7 +59,7 @@ export default {
 }
 
 .duc-back {
-  background-color: #537f9e;
+  background-color: #fbfbfc;
 }
 
 .son {

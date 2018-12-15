@@ -41,8 +41,8 @@ export default {
     BlogHeader,
     BlogHome,
     BlogContent,
-    HomeLoadingTwo: () => import('@c/Loading/HomeLoadingOne'),
-    HomeLoadingOne: () => import('@c/Loading/HomeLoadingTwo'),
+    HomeLoadingOne: () => import('@c/Loading/HomeLoadingOne'),
+    // HomeLoadingTwo: () => import('@c/Loading/HomeLoadingTwo'),
     HomeLoadingThree: () => import('@c/Loading/HomeLoadingThree'),
     HomeLoadingFour: () => import('@c/Loading/HomeLoadingFour'),
     // HomeLoadingFive: () => import('@c/Loading/HomeLoadingFive'),
@@ -51,7 +51,7 @@ export default {
   data () {
     return {
       loading: true,
-      loadingName: ['one', 'two', 'three', 'four', 'six'],
+      loadingName: ['one', 'three', 'four', 'six'],
       links: [],
       homeArticles: [],
       scrolled: false
