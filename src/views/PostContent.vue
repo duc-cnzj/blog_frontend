@@ -109,6 +109,7 @@
 
                                 <div class="comment_author_image">
                                   <div><img
+                                      class="reply-image"
                                       :src="comment.author.avatar !== '' ? comment.author.avatar : '/images/comment_author_1.jpg'"
                                       alt=""
                                     ></div>
