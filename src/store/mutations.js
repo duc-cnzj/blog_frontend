@@ -23,5 +23,14 @@ export default {
 
   [types.SET_SEARCH] (state, { search }) {
     state.search = search
+  },
+
+  [types.SETUSER] (state, data) {
+    console.log('setuser')
+    state.user.id = data.id
+    state.user.name = data.name
+    state.user.avatar = data.avatar
+    state.user.lastLoginAt = data.last_login_at
+    state.isLogin = true
   }
 }

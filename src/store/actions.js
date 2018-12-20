@@ -5,6 +5,7 @@ import {
   getCategories,
   getTopArticles
 } from '@api/api'
+import { login, me } from '@/api/user'
 import router from '../router'
 
 export default {
@@ -47,5 +48,17 @@ export default {
 
   welcomeUser ({ commit }) {
     commit(types.WELCOME)
+  },
+
+  loginUser ({ commit }) {
+    login().then(res => {
+      console.log(res.data)
+    })
+  },
+
+  me ({ commit }) {
+    me().then(({ data }) => {
+      commit(types.SETUSER, data)
+    })
   }
 }

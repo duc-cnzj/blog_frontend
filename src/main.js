@@ -18,6 +18,7 @@ import iView from 'iview'
 // import NProgress from 'nprogress'
 import Echo from 'laravel-echo'
 import myMixin from '@/mixins/mousetrap'
+import IconSvg from '@/components/IconSvg'
 
 window.io = require('socket.io-client')
 window.Echo = new Echo({
@@ -34,6 +35,8 @@ Vue.use(VueLazyload, {
   loading: imageLoading,
   attempt: 3
 })
+
+Vue.component('icon-svg', IconSvg)
 
 toastr.options = toastrConfig
 

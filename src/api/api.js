@@ -31,12 +31,18 @@ export const elasticSearch = query =>
 export const getCommentsByArticleId = id =>
   ajax(`${BASE_URL}/articles/${id}/comments`)
 
-export const postComments = ({ articleId, postContent, commentId = 0 }) =>
+export const postComments = ({
+  articleId,
+  postContent,
+  commentId = 0,
+  socialUserId = 0
+}) =>
   ajax(
     `${BASE_URL}/articles/${articleId}/comments`,
     {
       content: postContent,
-      comment_id: commentId
+      comment_id: commentId,
+      social_user_id: socialUserId
     },
     'post'
   )

@@ -4,5 +4,13 @@ export default {
   topArticles: [],
   categories: [],
   welcome: false,
-  search: ''
+  search: '',
+  user: {
+    id: null,
+    name: '',
+    avatar: '',
+    lastLoginAt: ''
+  },
+  isLogin: false,
+  token: localStorage.getItem('token')
 }

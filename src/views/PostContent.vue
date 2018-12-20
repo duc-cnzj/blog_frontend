@@ -59,7 +59,21 @@
 
               <!-- Post Comment -->
               <div class="post_comment">
-                <div class="post_comment_title">发表评论</div>
+                  <div v-if="$store.state.isLogin">
+                  <img :src="$store.state.user.avatar" alt="" class="social-avatar">
+                  <span>{{$store.state.user.name}}</span>
+                  </div>
+                  <div v-else>
+                  <span class="post_comment_title">
+                    发表评论
+                  </span>
+                  <a @click.prevent="duchref">
+                  <icon-svg
+                    style="cursor: pointer;"
+                    name="github"
+                  ></icon-svg>
+                  </a>
+                  </div>
                 <div class="row">
                   <div class="col-xl-8">
                     <div class="post_comment_form_container">
@@ -253,11 +267,12 @@
 import BlogSiderbar from '@views/BlogSiderbar'
 import _ from 'lodash'
 import Loading from '@c/Loading'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import { postComments, getCommentsByArticleId } from '@api/api'
 import 'emojionearea'
 import 'jquery-textcomplete'
 import $ from 'jquery'
+import { setToken } from '@/utils/token'
 
 window.emojioneVersion = '4.0'
 
@@ -278,8 +293,23 @@ export default {
     }
   },
 
+  created () {
+    if (this.token && !this.isLogin) {
+      console.log(this.token, this.isLogin)
+      this.me().then(() => {
+        console.log('用户信息获取成功')
+      }).catch(() => {
+        setToken('')
+      })
+    }
+  },
+
   computed: {
-    ...mapState({ currentArticle: 'currentArticle' }),
+    ...mapState({ currentArticle: 'currentArticle', token: 'token', isLogin: 'isLogin', user: 'user' }),
+
+    githubUrl () {
+      return process.env.VUE_APP_URL + '/login/github'
+    },
 
     visableComments () {
       if (this.loadData) {
@@ -359,6 +389,20 @@ export default {
   },
 
   methods: {
+    ...mapActions(['me']),
+    duchref () {
+      var popup = window.open(this.githubUrl, 'newwindow', 'height=500, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+      var timer = setInterval(() => {
+        if ((popup !== null) && !popup.closed) {
+          // 窗口仍然打开着
+          console.log('open')
+        } else {
+          clearInterval(timer)
+          window.location.reload()
+        }
+      }, 400)
+    },
+
     fold () {
       this.loading = false
       this.loadMore = false
@@ -375,10 +419,15 @@ export default {
         return
       }
 
-      const data = await postComments({
+      let obj = {
         articleId: this.currentArticle.id,
         postContent: this.postContent
-      })
+      }
+
+      if (this.isLogin) {
+        obj.socialUserId = this.user.id
+      }
+      const data = await postComments(obj)
 
       this.postContent = ''
       $('#emojiarea')
@@ -846,5 +895,12 @@ export default {
   width: 34px;
   height: 34px;
   border-radius: 50%;
+}
+
+.social-avatar {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
 }
 </style>
