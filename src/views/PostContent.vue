@@ -109,7 +109,7 @@
 
                                 <div class="comment_author_image">
                                   <div><img
-                                      src="/images/comment_author_1.jpg"
+                                      :src="comment.author.avatar !== '' ? comment.author.avatar : '/images/comment_author_1.jpg'"
                                       alt=""
                                     ></div>
                                 </div>
