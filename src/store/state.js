@@ -1,3 +1,5 @@
+import { getToken } from '@/utils/token'
+
 export default {
   currentArticle: {},
   trendingArticles: [],
@@ -12,5 +14,5 @@ export default {
     lastLoginAt: ''
   },
   isLogin: false,
-  token: localStorage.getItem('token')
+  token: getToken()
 }
