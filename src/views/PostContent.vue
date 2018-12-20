@@ -391,16 +391,12 @@ export default {
   methods: {
     ...mapActions(['me']),
     duchref () {
-      var popup = window.open(this.githubUrl, 'newwindow', 'height=500, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
-      var timer = setInterval(() => {
-        if ((popup !== null) && !popup.closed) {
-          // 窗口仍然打开着
-          console.log('open')
-        } else {
-          clearInterval(timer)
-          window.location.reload()
-        }
-      }, 400)
+      window.open(this.githubUrl, 'newwindow', 'height=500, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
+
+      window.addEventListener('message', function (e) {
+        setToken(e.data)
+        window.location.reload()
+      }, false)
     },
 
     fold () {
