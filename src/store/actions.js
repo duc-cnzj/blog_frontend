@@ -58,7 +58,7 @@ export default {
 
   me ({ commit }) {
     me().then(({ data }) => {
-      commit(types.SETUSER, data)
+      commit(types.SETUSER, data.data)
     })
   }
 }
