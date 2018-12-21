@@ -398,9 +398,9 @@ export default {
       window.addEventListener('message', function (e) {
         that.me(e.data).then(() => {
           console.log('用户信息获取成功')
-          this.setToken(e.data)
+          that.setToken(e.data)
         }).catch(() => {
-          this.setToken('')
+          that.setToken('')
         })
       }, false)
     },
