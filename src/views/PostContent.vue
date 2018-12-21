@@ -394,9 +394,10 @@ export default {
     duchref () {
       window.open(this.githubUrl, 'newwindow', 'height=500, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
 
+      var that = this
       window.addEventListener('message', function (e) {
         setToken(e.data)
-        this.me().then(() => {
+        that.me().then(() => {
           console.log('用户信息获取成功')
         }).catch(() => {
           setToken('')
