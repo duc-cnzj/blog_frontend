@@ -396,7 +396,11 @@ export default {
 
       window.addEventListener('message', function (e) {
         setToken(e.data)
-        window.location.reload()
+        this.me().then(() => {
+          console.log('用户信息获取成功')
+        }).catch(() => {
+          setToken('')
+        })
       }, false)
     },
 
