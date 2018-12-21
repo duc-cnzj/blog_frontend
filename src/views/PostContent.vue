@@ -268,12 +268,11 @@
 import BlogSiderbar from '@views/BlogSiderbar'
 import _ from 'lodash'
 import Loading from '@c/Loading'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 import { postComments, getCommentsByArticleId } from '@api/api'
 import 'emojionearea'
 import 'jquery-textcomplete'
 import $ from 'jquery'
-import { setToken } from '@/utils/token'
 
 window.emojioneVersion = '4.0'
 
@@ -300,7 +299,7 @@ export default {
       this.me().then(() => {
         console.log('用户信息获取成功')
       }).catch(() => {
-        setToken('')
+        this.setToken('')
       })
     }
   },
@@ -390,17 +389,18 @@ export default {
   },
 
   methods: {
+    ...mapMutations({ setToken: 'set_token' }),
     ...mapActions(['me']),
     duchref () {
       window.open(this.githubUrl, 'newwindow', 'height=500, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
 
       var that = this
       window.addEventListener('message', function (e) {
-        setToken(e.data)
         that.me(e.data).then(() => {
           console.log('用户信息获取成功')
+          this.setToken(e.data)
         }).catch(() => {
-          setToken('')
+          this.setToken('')
         })
       }, false)
     },

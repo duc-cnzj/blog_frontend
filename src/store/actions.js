@@ -61,4 +61,5 @@ export default {
       commit(types.SETUSER, data)
     })
   }
+
 }

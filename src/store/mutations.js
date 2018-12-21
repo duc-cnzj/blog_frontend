@@ -1,4 +1,5 @@
 import * as types from './mutation-types'
+import { setToken } from '@/utils/token'
 
 export default {
   [types.SET_CURRENT_ARTICLE] (state, { article }) {
@@ -32,5 +33,10 @@ export default {
     state.user.avatar = data.avatar
     state.user.lastLoginAt = data.last_login_at
     state.isLogin = true
+  },
+
+  [types.SET_TOKEN] (state, token) {
+    state.token = token
+    setToken(token)
   }
 }
