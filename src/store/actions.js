@@ -56,10 +56,9 @@ export default {
     })
   },
 
-  me ({ commit }) {
-    me().then(({ data }) => {
+  me ({ commit }, token) {
+    me(token).then(({ data }) => {
       commit(types.SETUSER, data)
     })
   }
-
 }
