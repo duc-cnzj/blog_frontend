@@ -19,6 +19,8 @@ instance.interceptors.request.use(
   }
 )
 
+export { instance as axios }
+
 export default function ajax (url, data = {}, type = 'get') {
   return new Promise((resolve, reject) => {
     instance[type](url, data)

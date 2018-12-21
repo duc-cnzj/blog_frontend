@@ -397,7 +397,7 @@ export default {
       var that = this
       window.addEventListener('message', function (e) {
         setToken(e.data)
-        that.me().then(() => {
+        that.me(e.data).then(() => {
           console.log('用户信息获取成功')
         }).catch(() => {
           setToken('')
