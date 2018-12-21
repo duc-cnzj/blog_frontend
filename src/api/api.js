@@ -1,4 +1,4 @@
-import { ajax, axios } from './ajax'
+import ajax, { axios } from './ajax'
 
 const BASE_URL = process.env.VUE_APP_URL
 

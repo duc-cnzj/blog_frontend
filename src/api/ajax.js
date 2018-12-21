@@ -35,7 +35,7 @@ export default function ajax (url, data = {}, type = 'get') {
   return new Promise((resolve, reject) => {
     instance[type](url, data)
       .then(function (response) {
-        resolve(response.data)
+        resolve(response)
       })
       .catch(function (error) {
         // console.log(error.message)
