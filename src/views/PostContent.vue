@@ -446,7 +446,8 @@ export default {
       const data = await postComments({
         articleId: this.currentArticle.id,
         postContent: this.modalValue,
-        commentId: this.replyComment.id
+        commentId: this.replyComment.id,
+        token: this.token
       })
 
       this.modalValue = ''
