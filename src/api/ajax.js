@@ -19,13 +19,22 @@ instance.interceptors.request.use(
   }
 )
 
+instance.interceptors.response.use(function (response) {
+  // 对响应数据做点什么
+  NProgress.done()
+
+  return response.data
+}, function (error) {
+  // 对响应错误做点什么
+  return Promise.reject(error)
+})
+
 export { instance as axios }
 
 export default function ajax (url, data = {}, type = 'get') {
   return new Promise((resolve, reject) => {
     instance[type](url, data)
       .then(function (response) {
-        NProgress.done()
         resolve(response.data)
       })
       .catch(function (error) {

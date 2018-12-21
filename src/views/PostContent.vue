@@ -423,12 +423,10 @@ export default {
 
       let obj = {
         articleId: this.currentArticle.id,
-        postContent: this.postContent
+        postContent: this.postContent,
+        token: this.token
       }
 
-      if (this.isLogin) {
-        obj.socialUserId = this.user.id
-      }
       const data = await postComments(obj)
 
       this.postContent = ''

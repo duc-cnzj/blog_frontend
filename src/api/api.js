@@ -1,4 +1,4 @@
-import ajax from './ajax'
+import { ajax, axios } from './ajax'
 
 const BASE_URL = process.env.VUE_APP_URL
 
@@ -35,14 +35,17 @@ export const postComments = ({
   articleId,
   postContent,
   commentId = 0,
-  socialUserId = 0
-}) =>
-  ajax(
-    `${BASE_URL}/articles/${articleId}/comments`,
-    {
+  token = ''
+}) => {
+  return axios({
+    method: 'post',
+    data: {
       content: postContent,
-      comment_id: commentId,
-      social_user_id: socialUserId
+      comment_id: commentId
     },
-    'post'
-  )
+    url: `${BASE_URL}/articles/${articleId}/comments`,
+    headers: {
+      Authorization: token
+    }
+  })
+}

@@ -1,5 +1,4 @@
 import * as types from './mutation-types'
-import NProgress from 'nprogress'
 import {
   getArticleBy,
   getTrendingArticles,
@@ -59,8 +58,7 @@ export default {
 
   me ({ commit }) {
     me().then(({ data }) => {
-      commit(types.SETUSER, data.data)
-      NProgress.done()
+      commit(types.SETUSER, data)
     })
   }
 }
