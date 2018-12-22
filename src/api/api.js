@@ -35,7 +35,8 @@ export const postComments = ({
   articleId,
   postContent,
   commentId = 0,
-  token = ''
+  token = '',
+  socketId
 }) => {
   return axios({
     method: 'post',
@@ -45,7 +46,8 @@ export const postComments = ({
     },
     url: `${BASE_URL}/articles/${articleId}/comments`,
     headers: {
-      Authorization: token
+      Authorization: token,
+      'X-Socket-ID': socketId
     }
   })
 }

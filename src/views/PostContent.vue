@@ -294,6 +294,11 @@ export default {
   },
 
   created () {
+    if (this.currentArticle.id !== undefined) {
+      console.log(`article.${this.currentArticle.id}.comments`)
+
+      this.listen()
+    }
     if (this.token && !this.isLogin) {
       console.log(this.token, this.isLogin)
       this.me().then(() => {
@@ -329,10 +334,15 @@ export default {
 
   watch: {
     $route: function (to, from) {
+      console.log('leave')
+      window.Echo.leave(`article.${this.$store.state.currentArticle.id}.comments`)
       this.loadMore = false
       this.loading = false
       this.loadData = false
       this.fetchComments()
+    },
+    currentArticle: function (o, n) {
+      this.listen()
     }
   },
 
@@ -391,6 +401,25 @@ export default {
   methods: {
     ...mapMutations({ setToken: 'set_token' }),
     ...mapActions(['me']),
+    listen () {
+      console.log(`article.${this.$store.state.currentArticle.id}.comments`)
+
+      window.Echo.channel(`article.${this.$store.state.currentArticle.id}.comments`)
+        .listen('CommentCreated', (e) => {
+          if (e.comment_id === 0) {
+            this.comments.unshift(e)
+          } else {
+            for (let index = 0; index < this.comments.length; index++) {
+              if (this.comments[index].id === e.comment_id) {
+                console.log(index)
+
+                this.comments[index]['replies'].push(e)
+                break
+              }
+            }
+          }
+        })
+    },
     duchref () {
       window.open(this.githubUrl, 'newwindow', 'height=500, width=500, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, resizable=no,location=n o, status=no')
 
@@ -424,7 +453,8 @@ export default {
       let obj = {
         articleId: this.currentArticle.id,
         postContent: this.postContent,
-        token: this.token
+        token: this.token,
+        socketId: window.Echo.socketId()
       }
 
       const data = await postComments(obj)
@@ -447,7 +477,8 @@ export default {
         articleId: this.currentArticle.id,
         postContent: this.modalValue,
         commentId: this.replyComment.id,
-        token: this.token
+        token: this.token,
+        socketId: window.Echo.socketId()
       })
 
       this.modalValue = ''
@@ -455,10 +486,24 @@ export default {
         .data('emojioneArea')
         .setText('')
       window.toastr.success('回复成功')
-      this.comments[this.replyIndex]['replies'].push(data.data)
+
+      if (data.data.comment_id === 0) {
+        this.comments.unshift(data.data)
+      } else {
+        for (let index = 0; index < this.comments.length; index++) {
+          if (this.comments[index].id === data.data.comment_id) {
+            console.log(index)
+
+            this.comments[index]['replies'].push(data.data)
+            break
+          }
+        }
+      }
     },
 
     reply (comment, index) {
+      console.log('reply-index: ' + index)
+
       this.replyComment = comment
       this.replyIndex = index
     },

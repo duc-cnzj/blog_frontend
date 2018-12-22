@@ -57,8 +57,15 @@ export default {
   },
 
   me ({ commit }, token) {
-    me(token).then(({ data }) => {
-      commit(types.SETUSER, data)
+    return new Promise((resolve, reject) => {
+      me(token)
+        .then(({ data }) => {
+          commit(types.SETUSER, data)
+          resolve()
+        })
+        .catch(error => {
+          reject(error)
+        })
     })
   }
 }
