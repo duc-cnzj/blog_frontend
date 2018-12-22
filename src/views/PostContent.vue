@@ -294,11 +294,11 @@ export default {
   },
 
   created () {
-    if (this.currentArticle.id !== undefined) {
-      console.log(`article.${this.currentArticle.id}.comments`)
+    // if (this.currentArticle.id !== undefined) {
+    //   console.log(`article.${this.currentArticle.id}.comments`)
 
-      this.listen()
-    }
+    //   this.listen()
+    // }
     if (this.token && !this.isLogin) {
       console.log(this.token, this.isLogin)
       this.me().then(() => {
@@ -334,15 +334,16 @@ export default {
 
   watch: {
     $route: function (to, from) {
-      console.log('leave')
-      window.Echo.leave(`article.${this.$store.state.currentArticle.id}.comments`)
+      this.leave()
       this.loadMore = false
       this.loading = false
       this.loadData = false
       this.fetchComments()
     },
-    currentArticle: function (o, n) {
-      this.listen()
+    currentArticle: {
+      handler: function (o, n) {
+        this.listen()
+      }
     }
   },
 
@@ -401,6 +402,11 @@ export default {
   methods: {
     ...mapMutations({ setToken: 'set_token' }),
     ...mapActions(['me']),
+    leave () {
+      console.log(`leave: ${this.$store.state.currentArticle.id}`)
+
+      window.Echo.leave(`article.${this.$store.state.currentArticle.id}.comments`)
+    },
     listen () {
       console.log(`article.${this.$store.state.currentArticle.id}.comments`)
 
@@ -517,6 +523,10 @@ export default {
         this.loadData = true
       }, 500)
     }
+  },
+
+  destroyed () {
+    this.leave()
   }
 }
 </script>
