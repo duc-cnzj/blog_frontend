@@ -294,11 +294,7 @@ export default {
   },
 
   created () {
-    // if (this.currentArticle.id !== undefined) {
-    //   console.log(`article.${this.currentArticle.id}.comments`)
-
-    //   this.listen()
-    // }
+    this.backTop()
     if (this.token && !this.isLogin) {
       console.log(this.token, this.isLogin)
       this.me().then(() => {
@@ -334,6 +330,7 @@ export default {
 
   watch: {
     $route: function (to, from) {
+      this.backTop()
       this.leave()
       this.loadMore = false
       this.loading = false
@@ -348,10 +345,6 @@ export default {
   },
 
   mounted () {
-    scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    })
     this.fetchComments()
     let vm = this
     this.$nextTick(() => {
@@ -402,6 +395,12 @@ export default {
   methods: {
     ...mapMutations({ setToken: 'set_token' }),
     ...mapActions(['me']),
+    backTop () {
+      scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    },
     leave () {
       console.log(`leave: ${this.$store.state.currentArticle.id}`)
 
