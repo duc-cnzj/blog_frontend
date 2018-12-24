@@ -368,27 +368,6 @@ export default {
           .data('emojioneArea')
           .getText()
       })
-
-      let modalEmoji = $('#modal-emojiarea').emojioneArea({
-        buttonTitle: '使用 tab 快速打开表情',
-        pickerPosition: 'bottom',
-        searchPlaceholder: '快速搜索表情',
-        placeholder: '你的回复...',
-        tonesStyle: 'bullet',
-        saveEmojisAs: 'image',
-        useInternalCDN: true
-      })
-
-      modalEmoji[0].emojioneArea.on('keyup', function (btn, event) {
-        vm.modalValue = $('#modal-emojiarea')
-          .data('emojioneArea')
-          .getText()
-      })
-      modalEmoji[0].emojioneArea.on('emojibtn.click', function (btn, event) {
-        vm.modalValue = $('#modal-emojiarea')
-          .data('emojioneArea')
-          .getText()
-      })
     })
   },
 
@@ -507,6 +486,31 @@ export default {
     },
 
     reply (comment, index) {
+      let vm = this
+      let modalEmoji = $('#modal-emojiarea').emojioneArea({
+        buttonTitle: '使用 tab 快速打开表情',
+        pickerPosition: 'bottom',
+        searchPlaceholder: '快速搜索表情',
+        placeholder: '你的回复...',
+        tonesStyle: 'bullet',
+        saveEmojisAs: 'image',
+        useInternalCDN: true
+      })
+
+      setTimeout(function () {
+        modalEmoji.data('emojioneArea').editor.focus()
+      }, 700)
+
+      modalEmoji[0].emojioneArea.on('keyup', function (btn, event) {
+        vm.modalValue = $('#modal-emojiarea')
+          .data('emojioneArea')
+          .getText()
+      })
+      modalEmoji[0].emojioneArea.on('emojibtn.click', function (btn, event) {
+        vm.modalValue = $('#modal-emojiarea')
+          .data('emojioneArea')
+          .getText()
+      })
       console.log('reply-index: ' + index)
 
       this.replyComment = comment
