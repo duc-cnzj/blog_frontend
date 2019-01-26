@@ -41,8 +41,13 @@ export default {
 
   methods: {
     ...mapActions({
-      fetchArticle: 'getArticleBy'
-    })
+      getArticleBy: 'getArticleBy'
+    }),
+    async fetchArticle (id) {
+      await this.getArticleBy(id)
+
+      document.title = 'blog | ' + this.currentArticle.title
+    }
   }
 }
 </script>

@@ -52,8 +52,11 @@ window.search = function (value) {
 }
 
 router.beforeEach((to, from, next) => {
-  // NProgress.start()
-  // NProgress.inc()
+  console.log(to, from)
+  if (to.name !== 'showarticle') {
+    document.title = 'blog'
+  }
+
   next()
 })
 
