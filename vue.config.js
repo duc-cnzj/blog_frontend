@@ -3,6 +3,9 @@ const webpack = require('webpack')
 
 module.exports = {
   // outputDir: '/Users/congcong/Lumen/lumen-app/run/front',
+  devServer: {
+    port: "8000"
+  },
   configureWebpack: {
     plugins: [
       new webpack.ProvidePlugin({

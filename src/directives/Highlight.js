@@ -1,7 +1,7 @@
 import hljs from 'highlight.js'
-import 'highlight.js/styles/atom-one-dark.css' // 样式文件
+// import 'highlight.js/styles/atom-one-dark.css' // 样式文件
 // import 'highlight.js/styles/arta.css' // 样式文件
-// import 'highlight.js/styles/monokai-sublime.css' // 样式文件
+import 'highlight.js/styles/monokai-sublime.css' // 样式文件
 
 let DucHighlight = {}
 

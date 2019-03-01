@@ -36,7 +36,15 @@
 
     list-style-position: inside;
 
+    & > code {
+      margin: 0 5px 0 5px;
+      background: #E9E9FF;
+      color: #36C;
+      font-weight: bold;
+    }
+
     pre {
+      margin-top: 10px;
       border-radius: 5px !important;
       box-shadow: 0px 3px 15px #dbfbe3 !important;
 
@@ -69,6 +77,7 @@
 
     font-size: 15px;
     h1 {
+      margin-bottom: 30px;
       text-align: center;
       font-size: 2em;
     }
