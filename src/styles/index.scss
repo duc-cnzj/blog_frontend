@@ -6,6 +6,13 @@
   src: url("../assets/duc.otf");
 }
 
+@mixin code-style {
+  margin: 0 5px 0 5px;
+  background: #e9e9ff;
+  color: #36c;
+  font-weight: bold;
+}
+
 [v-cloak] {
   display: none;
 }
@@ -37,10 +44,11 @@
     list-style-position: inside;
 
     & > code {
-      margin: 0 5px 0 5px;
-      background: #e9e9ff;
-      color: #36c;
-      font-weight: bold;
+      @include code-style()
+    }
+
+    li > code {
+      @include code-style()
     }
 
     pre {
