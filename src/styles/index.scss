@@ -38,8 +38,8 @@
 
     & > code {
       margin: 0 5px 0 5px;
-      background: #E9E9FF;
-      color: #36C;
+      background: #e9e9ff;
+      color: #36c;
       font-weight: bold;
     }
 
@@ -56,11 +56,19 @@
     }
 
     blockquote {
-      margin: 20px 0 !important;
-      background-color: #f5f8fc;
-      padding: 1rem;
-      color: #8796a8;
-      border-left: none;
+      padding: 10px 20px 10px 20px;
+      margin: 10px 0px;
+      border-left: 3px solid #336cff;
+      background: #e9e9ff;
+      color: #336cff;
+      font-size: 1.1rem;
+      
+      // laravel-china 风格
+      // margin: 20px 0 !important;
+      // background-color: #f5f8fc;
+      // padding: 1rem;
+      // color: #8796a8;
+      // border-left: none;
       p {
         font-weight: normal !important;
       }
@@ -88,13 +96,14 @@
       line-height: 2em;
       // border-bottom: 1px solid #eee;
     }
-    
+
     h3 {
       font-size: 1.3em;
       line-height: 2em;
     }
-    
-    h4, h5 {
+
+    h4,
+    h5 {
       line-height: 2em;
     }
 
