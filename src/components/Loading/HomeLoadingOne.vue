@@ -14,7 +14,6 @@
       <div class="motor_shadow"></div>
       <i class="smoke smoke_1"></i>
       <i class="smoke smoke_2"></i>
-      <div class="percentage">loading&nbsp;&nbsp;<span>0%</span></div>
     </div>
   </div>
 </template>
