@@ -4,12 +4,15 @@ import { getToken } from '@/utils/token'
 
 var instance = axios.create()
 instance.defaults.headers.common['accept'] = 'application/json'
-axios.defaults.headers.common['Authorization'] = getToken() || ''
 
 instance.interceptors.request.use(
   function (config) {
     // 在发送请求之前做些什么
     NProgress.inc()
+    
+    if (!config.headers['Authorization']) {
+      config.headers['Authorization'] = getToken() || ''
+    }
 
     return config
   },
