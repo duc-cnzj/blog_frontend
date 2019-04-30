@@ -22,3 +22,9 @@ export default {
   props: ['image', 'path', 'title', 'author', 'created_at', 'author_url', 'desc']
 }
 </script>
+
+<style lang="scss" scoped>
+.card-img-top {
+    max-height: 200px;
+}
+</style>

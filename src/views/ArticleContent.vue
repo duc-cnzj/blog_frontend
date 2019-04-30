@@ -4,39 +4,50 @@
       <div class="row row-lg-eq-height">
         <div class="col-lg-12">
           <div class="section_content" v-if="articles !== null && articles.length !== 0">
-
             <div class="card-deck-wrapper duc">
               <div class="card-deck" v-for="(items, index) in chunkArticles" :key="index">
-                <custom-card-with-image v-for="item in items" :key="item.id"
-                    :image="item.headImage"
-                    :content="getHighlightContent(item)"
-                    :path="'/articles/'+item.id"
-                    :title="getHighlight(item, 'title')"
-                    :author="item.author.name"
-                    :author_url="'/authors/'+item.author.id"
-                    :created_at="item.created_at"
-                    :desc="getHighlight(item, 'desc')" />
+                <custom-card-with-image
+                  v-for="item in items"
+                  :key="item.id"
+                  :image="item.headImage"
+                  :content="getHighlightContent(item)"
+                  :path="'/articles/'+item.id"
+                  :title="getHighlight(item, 'title')"
+                  :author="item.author.name"
+                  :author_url="'/authors/'+item.author.id"
+                  :created_at="item.created_at"
+                  :desc="getHighlight(item, 'desc')"
+                />
                 <template v-if="items.length < chunkNum">
-                  <custom-card-with-image class="duc-none" v-for="(item, index) in Array(chunkNum - items.length)" :key="index" />
+                  <custom-card-with-image
+                    class="duc-none"
+                    v-for="(item, index) in Array(chunkNum - items.length)"
+                    :key="index"
+                  />
                 </template>
               </div>
             </div>
 
-            <div v-if="showPaginate">
-              <paginator :dataSet="dataSet" @changed="changed" />
+            <div v-if="showPaginate" style="text-align: center;margin-bottom: 20px">
+              <Page
+                :total="dataSet.total"
+                :current="dataSet.current"
+                :page-size="dataSet.per_page"
+                @on-change="pageChange"
+                simple
+              />
             </div>
-            <hr />
+            <hr>
           </div>
 
           <div class="section_content" v-else-if="articles === null">
-            <loading />
+            <loading/>
           </div>
 
           <div class="section_content" v-else>
             <h1>未搜索到数据</h1>
-            <hr />
+            <hr>
           </div>
-
         </div>
       </div>
     </div>
@@ -47,13 +58,12 @@
 import LargestCardWithImage from '@c/LargestCardWithImage'
 import CustomCardWithImage from '@c/CustomCardWithImage'
 import Loading from '@c/Loading'
-import Paginator from '@c/Paginator'
 import _ from 'lodash'
 import { getArticles, elasticSearch } from '@api/api'
 
 export default {
   components: {
-    LargestCardWithImage, Paginator, Loading, CustomCardWithImage
+    LargestCardWithImage, Loading, CustomCardWithImage
   },
 
   data () {
@@ -79,6 +89,10 @@ export default {
   },
 
   methods: {
+    pageChange (page) {
+      this.fetchArticles(page)
+    },
+
     getHighlight (item, field, array = false) {
       if (item === []) {
         return
