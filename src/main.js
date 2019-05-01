@@ -19,6 +19,8 @@ import iView from 'iview'
 import Echo from 'laravel-echo'
 import myMixin from '@/mixins/mousetrap'
 import IconSvg from '@/components/IconSvg'
+import 'viewerjs/dist/viewer.css'
+import Viewer from 'v-viewer'
 
 window.io = require('socket.io-client')
 window.Echo = new Echo({
@@ -26,6 +28,7 @@ window.Echo = new Echo({
   host: `${process.env.VUE_APP_ECHO}`
 })
 
+Vue.use(Viewer)
 Vue.use(iView)
 Vue.use(Focus)
 Vue.use(DucHighlight)

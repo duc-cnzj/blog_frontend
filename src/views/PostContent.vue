@@ -38,6 +38,7 @@
               <p
                 v-html="currentArticle.content"
                 v-highlight
+                v-viewer
               ></p>
 
               <!-- Post Tags -->
@@ -277,6 +278,7 @@ import $ from 'jquery'
 window.emojioneVersion = '4.0'
 
 export default {
+
   components: { BlogSiderbar, Loading },
 
   data () {
