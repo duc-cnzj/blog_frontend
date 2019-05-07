@@ -76,7 +76,7 @@
                   </a>
                   </div>
                 <div class="row">
-                  <div class="col-xl-8">
+                  <div class="col-lg-9">
                     <div class="post_comment_form_container">
                       <textarea id="emojiarea"></textarea>
                       <button
@@ -96,7 +96,7 @@
               >
                 <div class="comments_title">评论列表</div>
                 <div class="row">
-                  <div class="col-xl-8">
+                  <div class="col-lg-12">
                     <div class="comments_container">
                       <ul class="comment_list">
 
