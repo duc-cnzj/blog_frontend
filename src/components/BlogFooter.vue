@@ -1,18 +1,32 @@
 <template>
-    <footer class="footer">
-        <div class="container">
-            <div class="row row-lg-eq-height">
-                <div class="col-lg-12">
-                    <div class="footer_content">
-                        <div class="copyright">
-                            Copyright &copy; created by <i class="fa fa-heart-o" aria-hidden="true"></i> by duc.
-                        </div>
-                    </div>
-                </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row row-lg-eq-height">
+        <div class="col-lg-12">
+          <div class="footer_content">
+            <div class="beian">
+              <a href="http://beian.miit.gov.cn/" target="_blank" v-text="beianhao"></a>
             </div>
+            <div class="copyright">
+              Copyright &copy; created by
+              <i class="fa fa-heart-o" aria-hidden="true"></i> by duc.
+            </div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
+  </footer>
 </template>
+
+<script>
+export default {
+  computed: {
+    beianhao () {
+      return process.env.VUE_APP_BEIANHAO
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 /*********************************
@@ -165,5 +179,14 @@
 .subscribe_content form:hover .sub_input,
 .sub_input:focus {
   border-bottom: solid 1px rgba(255, 255, 255, 1);
+}
+
+.beian {
+  a {
+    color: white;
+    &:hover{
+      color: #1ab7ea;
+    }
+  }
 }
 </style>
