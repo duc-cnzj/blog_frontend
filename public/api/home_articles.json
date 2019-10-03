@@ -2,7 +2,7 @@
   "data": [
     {
       "id": 1,
-      "headImage": "images/post_4.jpg",
+      "head_image": "images/post_4.jpg",
       "category": "体育",
       "title": "你想学乒乓球吗！？",
       "recommendArticles": [
@@ -25,7 +25,7 @@
     },
     {
       "id": 3,
-      "headImage": "images/post_8.jpg",
+      "head_image": "images/post_8.jpg",
       "category": "php",
       "title": "php 是世界上最好的语言！",
       "recommendArticles": [
@@ -48,7 +48,7 @@
     },
     {
       "id": 4,
-      "headImage": "images/post_7.jpg",
+      "head_image": "images/post_7.jpg",
       "category": "php",
       "title": "php 是世界上最好的语言！",
       "recommendArticles": [

@@ -88,7 +88,7 @@
                   <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
                     <div class="side_post_image">
                       <div><img
-                          :src="item.headImage"
+                          :src="item.head_image"
                           alt=""
                           class="image70"
                         ></div>
@@ -192,7 +192,7 @@
                   <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
                     <div class="side_post_image">
                       <div><img
-                          :src="item.headImage"
+                          :src="item.head_image"
                           alt=""
                           class="image70"
                         ></div>

@@ -2,7 +2,7 @@
   "data": {
     "id": 6,
     "title": "文章标题",
-    "headImage": "images/post_1.jpg",
+    "head_image": "images/post_1.jpg",
     "author": {
       "name": "Katy Liu<",
       "id": 1,

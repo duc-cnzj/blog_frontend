@@ -5,7 +5,7 @@
     <div class="home_slider_container duc">
       <div class="owl-carousel owl-theme home_slider" v-if="articles.length > 0">
         <!-- Slider Item -->
-        <div class="home_slider_background" :style="getImage(article.headImage)" v-for="(article, index) in  articles" :key="index">
+        <div class="home_slider_background" :style="getImage(article.head_image)" v-for="(article, index) in  articles" :key="index">
 
           <div class="home_slider_content_container">
             <div class="container">
@@ -119,7 +119,7 @@ export default {
     ...mapState(['welcome']),
 
     nextHeadImage () {
-      return this.getImage(this.articles[this.index].headImage)
+      return this.getImage(this.articles[this.index].head_image)
     },
 
     nextTitle () {

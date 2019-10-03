@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="home_background parallax-window" data-parallax="scroll" :style="'background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(' + currentArticle.headImage + ');background-size: contain;'" data-image-src="/images/post.jpg" data-speed="0.8"></div>
+    <div class="home_background parallax-window" data-parallax="scroll" :style="'background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(' + currentArticle.head_image + ');background-size: contain;'" data-image-src="/images/post.jpg" data-speed="0.8"></div>
     <div class="home_content">
       <div class="post_category trans_200" v-if="currentArticle.category !== undefined">
         <router-link class="trans_200" :to="'/categories/' + currentArticle.category.id">{{currentArticle.category.name}}</router-link>

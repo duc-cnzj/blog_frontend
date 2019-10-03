@@ -9,7 +9,7 @@
                 <custom-card-with-image
                   v-for="item in items"
                   :key="item.id"
-                  :image="item.headImage"
+                  :image="item.head_image"
                   :content="getHighlightContent(item)"
                   :path="'/articles/'+item.id"
                   :title="getHighlight(item, 'title')"
