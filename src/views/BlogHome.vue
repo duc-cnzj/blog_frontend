@@ -36,7 +36,7 @@
             <div class="container">
               <div class="row d-flex flex-row align-items-end">
 
-                <div class="col-lg-3 col-md-6 similar_post_col" v-for="(r, i) in article.recommendArticles" :key="i">
+                <div class="col-lg-3 col-md-6 similar_post_col" v-for="(r, i) in article.recommend_articles" :key="i">
                   <div class="similar_post trans_200">
                     <router-link :to="'/articles/'+r.id">{{r.title}}</router-link>
                   </div>
