@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // outputDir: '/Users/congcong/Lumen/lumen-app/run/front',
@@ -12,6 +13,12 @@ module.exports = {
         $: 'jquery',
         jQuery: 'jquery',
         'window.jQuery': 'jquery'
+      }),
+      new HtmlWebpackPlugin({
+        template: 'public/index.html',
+        minify: {
+          removeAttributeQuotes: false
+        }
       })
     ],
     resolve: {
