@@ -18,7 +18,7 @@ export default {
     if (Object.is(Number(to.params.id), NaN)) {
       window.toastr.error('非法路由地址')
 
-      next({ path: '/home' })
+      next({ path: '/' })
     } else {
       this.fetchArticle(to.params.id)
 

@@ -19,10 +19,6 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/home'
-    },
-    {
-      path: '/home',
       name: 'home',
       components: {
         home: BlogHome,
@@ -39,7 +35,7 @@ export default new Router({
       beforeEnter: (to, from, next) => {
         if (Object.is(Number(to.params.id), NaN)) {
           window.toastr.error('非法路由地址')
-          next({ path: '/home' })
+          next({ path: '/' })
         } else {
           next()
         }

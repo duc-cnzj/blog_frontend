@@ -9,7 +9,7 @@
           <div class="col">
             <div class="header_content d-flex flex-row align-items-center justify-content-start">
               <div class="logo">
-                <router-link to="/home">duc's blog</router-link>
+                <router-link to="/">duc's blog</router-link>
               </div>
               <nav class="main_nav">
                 <ul>
