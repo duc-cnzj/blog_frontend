@@ -1,12 +1,6 @@
 <template>
     <form @submit.prevent="search" class="search w-50" id="search">
         <input  id="search-input" class="search__input" autocomplete="off" type="text" v-model="searchField" placeholder="You Know, for Search 🐳" />
-        <button class="search__button" id="search-button"><svg width="32.01" height="32.01" viewBox="0 0 32 32">
-                <g fill="none" class="icon">
-                    <path id="search-icon-line" d="M22.47 22.472l9.176 9.176" />
-                    <path id="search-icon-circle" d="M26.293 13.396c0 7.123-5.774 12.896-12.897 12.896C6.274 26.292.5 20.52.5 13.396.5 6.274 6.274.5 13.396.5c7.123 0 12.897 5.774 12.897 12.896z" />
-                </g>
-            </svg></button>
     </form>
 
 </template>
@@ -101,10 +95,9 @@ a {
 .search {
   @extend %pane;
   display: flex;
-  box-shadow: 0 4px 20px rgba(darken($col-bg, 25%), 0.4);
-
-  &__input,
-  &__button {
+  background-color: transparent;
+  &__input {
+    opacity: 0.5;
     height: 70px;
     padding: 0 $padding;
     font-family: inherit;
@@ -113,45 +106,17 @@ a {
     color: inherit;
     border: none;
     background: transparent;
-  }
-
-  &__input {
     min-width: 100px;
     flex-grow: 1;
     padding-right: 0;
+    border-radius: 10px;
   }
 
-  &__button {
-    float: right;
-    cursor: pointer;
-    padding-right: 1.3em;
-
-    svg {
-      margin-top: 7px;
-      transition: transform 0.5s;
-
-      .icon {
-        stroke: $col-primary;
-      }
-    }
-
-    #search-icon-line {
-      transition: opacity 1s;
-    }
-
-    &.active {
-      svg {
-        transform: translate(3px, 3px);
-      }
-
-      #search-icon-circle {
-        animation: searchSpinIntro 1s, searchSpin 2s 1s infinite linear;
-      }
-
-      #search-icon-line {
-        opacity: 0;
-      }
-    }
+  :focus {
+    box-shadow: 0 0 10px red;
+    background-color: white;
+    opacity: 1;
+    transition: all .5s ease-in-out;
   }
 }
 
@@ -330,4 +295,5 @@ $circum: 81; // circumference of the search icon circle
   width: 100%;
   height: 100%;
 }
+
 </style>
