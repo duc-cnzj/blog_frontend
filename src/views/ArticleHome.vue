@@ -1,7 +1,7 @@
 <template>
 
   <div class="home">
-    <div class="home_background  duc-back" data-parallax="scroll" :style="'background-image:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(/images/regular.jpg);'" data-image-src="/images/regular.jpg" data-speed="0.8">
+    <div class="home_background  duc-back" data-parallax="scroll" :style="'background:url(/images/article_bg.jpg) no-repeat;background-position: center center;background-size: cover;'" data-image-src="/images/article_bg.jpg" data-speed="0.8">
       <div class="d-flex flex-column justify-content-center duc ">
         <div class="text-center">
           <h1>文章列表</h1>
