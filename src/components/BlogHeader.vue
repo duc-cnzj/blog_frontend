@@ -39,6 +39,7 @@
                     type="search"
                     class="header_search_input"
                     required="required"
+                    autocomplete="off"
                     placeholder="搜索文章....😄"
                     v-model="searchField"
                   />
