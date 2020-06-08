@@ -99,10 +99,10 @@ export default {
       }
 
       if (array) {
-        return item.highlight !== undefined && item.highlight[field] !== null ? item.highlight[field] : _.map(item.row[field], 'name').join(',')
+        return (item.highlight !== undefined && item.highlight[field] !== null && item.highlight[field] !== '') ? item.highlight[field] : _.map(item.row[field], 'name').join(',')
       }
 
-      return item.highlight !== undefined && item.highlight[field] !== null ? item.highlight[field] : item[field]
+      return (item.highlight !== undefined && item.highlight[field] !== null && item.highlight[field] !== '') ? item.highlight[field] : item[field]
     },
 
     getHighlightContent (item) {

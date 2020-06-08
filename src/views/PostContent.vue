@@ -53,6 +53,8 @@
                   </li>
                 </ul>
               </div>
+
+              <reward></reward>>
             </div>
 
             <!-- Similar Posts -->
@@ -269,6 +271,7 @@
 import BlogSiderbar from '@views/BlogSiderbar'
 import _ from 'lodash'
 import Loading from '@c/Loading'
+import Reward from '@c/Reward'
 import { mapState, mapActions, mapMutations } from 'vuex'
 import { postComments, getCommentsByArticleId } from '@api/api'
 import 'emojionearea'
@@ -279,7 +282,7 @@ window.emojioneVersion = '4.0'
 
 export default {
 
-  components: { BlogSiderbar, Loading },
+  components: { BlogSiderbar, Loading, Reward },
 
   data () {
     return {
