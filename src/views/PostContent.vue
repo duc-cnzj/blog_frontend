@@ -419,7 +419,7 @@ export default {
             console.log(index)
 
             if (!this.comments[index]['replies']) {
-              this.comments[index]['replies'] = data.data
+              this.comments[index]['replies'] = [data.data]
             } else {
               this.comments[index]['replies'].push(data.data)
             }
