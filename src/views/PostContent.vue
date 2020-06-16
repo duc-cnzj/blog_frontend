@@ -38,7 +38,7 @@
                 </ul>
               </div>
 
-              <reward></reward>>
+              <reward></reward>
             </div>
 
             <!-- Similar Posts -->
