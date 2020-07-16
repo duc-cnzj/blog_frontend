@@ -18,7 +18,7 @@
     "jquery": "^3.4.0",
     "laravel-echo": "^1.4.1",
     "less-loader": "^4.1.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "lottie-web": "^5.3.3",
     "mousetrap": "^1.6.2",
     "nprogress": "^0.2.0",
